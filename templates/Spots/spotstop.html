@@ -1,0 +1,39 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/TopLayout.css' %}">
+{% endblock %}
+
+{% block meta_description %}{% endblock %}
+
+{% block logina %}<a href="{% url 'accounts:login' %}"><h1> S O E N S </h1></a>{% endblock %}
+
+{% block mainnav %}
+    <div class="btn_bluered">
+        <a href="{% url 'Soen:soentop' %}">Soen</a>
+    </div>
+    <div class="btn_bluered">
+        <a href="https://so-en.herokuapp.com/">So-en</a>
+    </div>
+    <div class="btn_bluered">
+        <a href="https://basebasebase.herokuapp.com/">Number</a>
+    </div>
+{% endblock %}
+
+{% block navA %}
+    <br>
+    <p>(Spots)</p>
+    <div class="button_radius"><a href="">現　場　List</a></div><br>
+    <div class="button_radius"><a href="{% url 'Soen:generalcontractor' %}">元　請　List</a></div><br>
+    <div class="button_radius"><a href="{% url 'Soen:uncategory' %}">未　分類List</a></div><br>
+
+{% endblock %}
+
+{% block main %}
+    <div ID=itemF1 style="background-color:white;">
+    </div>
+{% endblock %}
+
+{% block mainsub %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}{% endblock %}
+{% block meta_description %}{% endblock %}
+{{ title }}
+
+{% block mainnav %}
+{% endblock %}
+
+{% block navA %}
+    <a href="{% url 'accounts:logintop' %}"><p>loginTop</p></a>
+{% endblock %}
+
+{% block main %}
+    <br>MemberUpdate
+    <form action="{% url 'Soen:updatemember' data.pk %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ form2.as_p }}
+        <br>
+        <button type="submit">hennshuu</button>
+    </form>
+
+
+{% endblock %}

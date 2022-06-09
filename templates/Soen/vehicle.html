@@ -1,0 +1,37 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}<link rel="stylesheet" type="text/css" href="{% static 'css/TopLayout.css' %}">{% endblock %}
+{% block meta_description %}{% endblock %}
+{{ title }}
+{% block mainnav %}
+    <br>
+    <div class="btn_bluered">
+        <a href="{% url 'Soen:soentop' %}">Soen</a>
+    </div>
+    <br>
+    <div class="btn_bluered">
+        <a href="{% url 'Spots:spotstop' %}">Spots</a>
+    </div>
+    <br>
+{% endblock %}
+{% block navA %}vehicle
+    <div class="button_radius"><a href="{% url 'Soen:soenmember' %}">社員List</a></div><br>{% endblock %}
+
+{% block main %}
+    <br>
+    <table class="normal_table">
+        <tr>
+            <th>Name</th>
+            <th>車両番号</th>
+            <th>車検証_型式</th>
+        </tr>
+        <tr>
+            <td>{{ MemberV.name }}</td>
+            {% for Mvehicle in MemberV.soenmemberVehicle.all %}
+                <td>{{ Mvehicle.vehicleNumber }}</td>
+                <td>{{ Mvehicle.vehicleModel }}</td>>
+            {% endfor %}
+        </tr>
+    </table>
+{% endblock %}

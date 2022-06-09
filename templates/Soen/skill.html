@@ -1,0 +1,46 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}<link rel="stylesheet" type="text/css" href="{% static 'css/TopLayout.css' %}">{% endblock %}
+{% block meta_description %}{% endblock %}
+{{ title }}
+{% block mainnav %}
+    <br>
+    <div class="btn_bluered">
+        <a href="{% url 'Soen:soentop' %}">Soen</a>
+    </div>
+    <br>
+    <div class="btn_bluered">
+        <a href="{% url 'Spots:spotstop' %}">Spots</a>
+    </div>
+    <br>
+{% endblock %}
+
+{% block navA %}skill
+    <div class="button_radius"><a href="{% url 'Soen:soenmember' %}">社員List</a></div><br>{% endblock %}
+
+{% block main %}
+    <br>
+    <table class="normal_table">
+        <tr>
+            <th>Genre</th>
+            <th>Name</th>
+            <th>特別教育</th>
+            <th>技能講習</th>
+            <th>免許</th>
+        </tr>
+        <tr>
+            <td>{{ MemberS.genre }}</td>
+            <td>{{ MemberS.name }}</td>
+            {% for Meducation in MemberS.soenmemberEducation.all %}
+                <td>{{ Meducation.specialeducation }}</td>
+            {% endfor %}
+            {% for Mskill in MemberS.soenmemberSkill.all %}
+                <td>{{ Mskill.skill_name }}</td>
+            {% endfor %}
+            {% for Mlicence in MemberS.soenmemberLicence.all %}
+                <td>{{ Mlicence.licence_name }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+{% endblock %}

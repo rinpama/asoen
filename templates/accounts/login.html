@@ -1,0 +1,31 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}{% endblock %}
+{% block meta_description %}{% endblock %}
+{{ title }}
+
+{% block navA %}
+    <br>
+    <a class="btn-normal-white" href="{% url 'Soen:soentop' %} ">HOME</a>
+{% endblock %}
+
+{% block main %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            {{ field }}
+        {% endfor %}
+        <div class="">
+            {% for error in form.non_field_errors %}
+                <div class="" role="alert">
+                    <p>{{ error }}</p>
+                </div>
+            {% endfor %}
+        </div>
+            <div class="">
+                <button type="submit" class="btn">ログイン</button>
+            </div>
+    <br>
+
+{% endblock %}

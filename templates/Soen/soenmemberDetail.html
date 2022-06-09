@@ -1,0 +1,47 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}<link rel="stylesheet" type="text/css" href="{% static 'css/TopLayout.css' %}">{% endblock %}
+{% block meta_description %}{% endblock %}
+{{ title }}
+{% block mainnav %}
+        <br>
+    <div class="btn_bluered">
+        <a href="{% url 'Soen:soentop' %}">Soen</a>
+    </div>
+    <br>
+    <div class="btn_bluered">
+        <a href="{% url 'Spots:spotstop' %}">Spots</a>
+    </div>
+    <br>
+{% endblock %}
+
+{% block navA %}
+    <br><br>
+    <div class="button_radius"><a href="{% url 'Soen:soenmember' %}">社員List</a></div><br>
+{% endblock %}
+
+{% block main %}
+    <br>
+    <table class="normal_table">
+        <tr>
+            <th>Genre</th>
+            <th>Name</th>
+{#            <th>住所</th>#}
+{#            <th>Phone</th>#}
+            <th>年齢</th>
+            <th>血液型</th>
+
+        </tr>
+        <tr>
+            <td>{{ MemberD.genre }}</td>
+            <td>{{ MemberD.name }}</td>
+            {% for Mdetail in MemberD.soenmemberD.all %}
+{#                <td>{{ Mdetail.add }}</td>#}
+{#                <td>{{ Mdetail.tel }}</td>#}
+                <td>{{ Mdetail.age }}</td>
+                <td>{{ Mdetail.bloodtype }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+{% endblock %}

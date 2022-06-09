@@ -1,0 +1,82 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}{% endblock %}
+{% block meta_description %}{% endblock %}
+{{ title }}
+
+{% block logina %}<a href="{% url 'Soen:soentop' %}"><h1> S O E N S </h1></a>{% endblock %}
+
+{% block navA %}
+    <br>
+    <br>
+    <div class="btn_bluered">
+        <a href="" style="text-decoration:none;">LIST</a>
+    </div>
+        <ul>
+            <li>
+                <a href="{% url 'Soen:loginmemberlist' %}"><p style="font-size:10px">装苑List</p></a>
+            </li>
+            <li>
+                <a href="{% url 'Soen:loginshokukatalist' %}"><p style="font-size:10px">職方List</p></a>
+            </li>
+            <li>
+                <a href="{% url 'Soen:loginkyouryokulist' %}"><p style="font-size:10px">協力会社List</p></a>
+            </li>
+            <li>
+                <a href="{% url 'Soen:logingeneralconstractorlist' %}"><p style="font-size:10px">元請List</p></a>
+            </li>
+        <li>
+                <a href="{% url 'Soen:loginuncategorylist' %}"><p style="font-size:10px">未分類List</p></a>
+            </li>
+        </ul>
+
+    <br>
+    <div class="btn_bluered">
+
+        <a href="" style="text-decoration:none; font-size:10px;">新規作成</a>
+    </div>
+    <ul>
+        <li>
+            <a href="{% url 'Soen:createmember' %}"><p style="font-size:10px">Member</p></a>
+        </li>
+        <li>
+            <a href="{% url 'Soen:creatememberdetail' %}"><p style="font-size:10px">MemDetail</p></a>
+        </li>
+        <li>
+            <a href="{% url 'Soen:createhealth' %}"><p style="font-size:10px;">健康診断</p></a>
+        </li>
+
+        <li>
+            <a href="{% url 'Soen:createvehicle' %}"><p style="font-size:10px;">車両</p></a>
+        </li>
+        {#        <li>#}
+        {#            <a href="{% url 'Soen:insurancecreate' %}"><p style="font-size:15px;">社会保険</p></a>#}
+        {#        </li>#}
+        {#            <li>#}
+        {#            <a href="{% url 'Soen:skillcreate' %}"><p style="font-size:15px;">?skill?</p></a>#}
+        {#        </li>#}
+    </ul>
+
+    <div class="btn_bluered">
+        <a href="" style="text-decoration:none;">更新</a>
+    </div>
+    <ul>
+        {#        <li>#}
+        {#            <a href="{% url 'Spots:spotcreate' %}"><p style="font-size:15px;">現場作成</p></a>#}
+        {#        </li>#}
+        {#        <li>#}
+        {#            <a href="{% url 'Spots:spotcreate' %}"><p style="font-size:15px;"></p></a>#}
+        {#        </li>#}
+        {##}
+        {#        <li>#}
+        {#            <a href="{% url 'Spots:spotcreate' %}"><p style="font-size:15px;"></p></a>#}
+        {#        </li>#}
+    </ul>
+
+
+{% endblock %}
+
+{% block main %}
+    <H1 STYLE="align-content: center; text-align: center;">ログイン中</H1>
+{% endblock %}

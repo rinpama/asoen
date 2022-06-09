@@ -1,0 +1,44 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}<link rel="stylesheet" type="text/css" href="{% static 'css/TopLayout.css' %}">{% endblock %}
+{% block meta_description %}{% endblock %}
+{{ title }}
+{% block mainnav %}
+    <br>
+    <div class="btn_bluered">
+        <a href="{% url 'Soen:soentop' %}">Soen</a>
+    </div>
+    <br>
+    <div class="btn_bluered">
+        <a href="{% url 'Spots:spotstop' %}">Spots</a>
+    </div>
+    <br>
+{% endblock %}
+{% block navA %}insurance
+    <div class="button_radius"><a href="{% url 'Soen:soenmember' %}">社員List</a></div><br>{% endblock %}
+
+{% block main %}
+    <br>
+    <table class="normal_table">
+        <tr>
+            <th>Name</th>
+            <th>保険_事業所</th>
+            <th>健康保険</th>
+            <th>年金保険</th>
+            <th>雇用保険</th>
+            <th>建退協</th>
+        </tr>
+        <tr>
+            <td>{{ MemberI.name }}</td>
+            {% for Minsurance in MemberI.soenmemberInsurance.all %}
+                <td>{{ Minsurance.Insurance_station }}</td>
+                <td>{{ Minsurance.healthInsurance }}</td>
+                <td>{{ Minsurance.pensionInsurance }}</td>
+                <td>{{ Minsurance.employmentinsurance }}</td>
+                <td>{{ Minsurance.retirementCooperation }}</td>
+
+            {% endfor %}
+        </tr>
+    </table>
+{% endblock %}

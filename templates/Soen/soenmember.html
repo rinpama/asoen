@@ -1,0 +1,47 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/TopLayout.css' %}">
+{% endblock %}
+{% block meta_description %}{% endblock %}
+{{ title }}
+
+{% block mainnav %}
+        <br>
+    <div class="btn_bluered">
+        <a href="{% url 'Soen:soentop' %}">Soen</a>
+    </div>
+    <br>
+    <div class="btn_bluered">
+        <a href="{% url 'Spots:spotstop' %}">Spots</a>
+    </div>
+    <br>
+{% endblock %}
+
+{% block navA %}
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <div class="button_radius"><a href="{% url 'Soen:soenmember' %}">社　員　List</a></div><br>
+    <div class="button_radius"><a href="{% url 'Soen:shokukatamember' %}">職　方　List</a></div><br>
+    <div class="button_radius"><a href="{% url 'Soen:kyouryokumember' %}">協力会社List</a></div><br>
+{% endblock %}
+
+{% block main %}
+    <br>MemberList
+    {% for member in Members %}
+        <tr>
+            <div><li style="background-color:white;">({{ member.genre }}){{ member.name }}
+                <a class="btn btn-normal" href="{% url 'Soen:soenmemberDetail' member.id %}"> 詳細 </a>
+            <a class="btn btn-normal" href="{% url 'Soen:vehicle' member.id %}"> 車両登録 </a>
+            <a class="btn btn-normal" href="{% url 'Soen:health' member.id %}"> 健康診断 </a>
+            <a class="btn btn-normal" href="{% url 'Soen:insurance' member.id %}"> 社会保険 </a>
+            <a class="btn btn-normal" href="{% url 'Soen:educationskilllicence' member.id %}"> Licence </a></li></div>
+
+        </tr>
+    {% endfor %}
+{% endblock %}

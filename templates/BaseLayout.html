@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="{% block meta_description %}株式会社 装苑　専用ページです。{% endblock %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/BaseLayout.css' %}">
+    {% block cssstyle %}{% endblock %}
+    <title>{{ title }}</title>
+</head>
+<body>
+<header>
+    <div id="container">
+        <div id="itemA" style="background-image: url('{% static "image/装苑ロゴ.png" %}');">
+            {#            IMGPIC#}
+        </div>
+        <div id="itemB">
+            {% block logina %}<h1> S O E N S </h1>{% endblock %}
+        </div>
+        <div id="itemC" style="background-image: url('{% static "image/長崎県sdgsLOGO.png" %}');">
+            {#            IMGPIC#}
+        </div>
+        <div id="itemD">
+            <div id="itemD1">
+                {% block mainnav %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</header>
+
+{#<navA></navA>#}
+{#<main></main>#}
+<div id="container5"> <!-- コンテナ -->
+    <div id="itemE">
+        {% block navA %}{% endblock %}
+    </div>
+    <div id="itemF" style="background-image: url('{% static "image/img12.png" %}'); background-size: 850px 550px;">
+        {% block main %}{% endblock %}
+    </div>
+    <div id="itemG">
+        {% block mainsub %}{% endblock %}
+    </div>
+</div>
+
+<footer>
+    <div class="container2">
+        <p class="footer_inner">Copyright © M3CH Co.Ltd All Right Reserved.</p>
+    </div>
+</footer>
+
+
+{##head#}
+{#{% extends 'BaseLayout.html' %}#}
+{#{% load static %#}
+{#{% block cssstyle %}{% endblock %}#}
+{#{% block meta_description %}{% endblock %}#}
+{#{{ title }}#}
+{##body#}
+{##header#}
+{##navA#}
+{#{% block navA%}{% endblock %}#}
+{##main#}
+{#{% block main%}{% endblock %}#}
+{##footer#}
+

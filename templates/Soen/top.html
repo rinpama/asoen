@@ -1,0 +1,43 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/TopLayout.css' %}">
+{% endblock %}
+
+{% block meta_description %}{% endblock %}
+
+{% block logina %}<a href="{% url 'accounts:login' %}"><h1> S O E N S </h1></a>{% endblock %}
+
+{% block mainnav %}
+    <div class="btn_bluered">
+        <a href="{% url 'Spots:spotstop' %}">Spots</a>
+    </div>
+    <div class="btn_bluered">
+        <a href="https://so-en.herokuapp.com/">So-en</a>
+    </div>
+    <div class="btn_bluered">
+        <a href="https://basebasebase.herokuapp.com/">Number</a>
+    </div>
+{% endblock %}
+
+
+{% block navA %}
+    <br>
+
+    <p>(Soen)</p>
+    <div class="button_radius"><a href="{% url 'Soen:soenmember' %}">社　員　List</a></div><br>
+    <div class="button_radius"><a href="{% url 'Soen:shokukatamember' %}">職　方　List</a></div><br>
+    <div class="button_radius"><a href="{% url 'Soen:kyouryokumember' %}">協力会社List</a></div><br>
+<a href="{% url 'Soen:createmember' %}"><p style="font-size:10px">MemberName作成</p></a>
+
+{% endblock %}
+
+{% block main %}
+    <div ID=itemF1 style="background-color:white;">
+    </div>
+{% endblock %}
+
+{% block mainsub %}
+{% endblock %}
+
