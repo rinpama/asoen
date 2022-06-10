@@ -12,8 +12,13 @@ from .forms import GenreF, SoenMemberF, soenmemberDetailF, VehicleF, SpecialEduc
     LicenceF
 
 
+######################################################################
 # DeleteMember
-
+class SoenMemberDeleteView(DeleteView,LoginRequiredMixin):
+    template_name = 'Soen/logmemberdelete.html'
+    model = SoenMemberM
+    success_url = reverse_lazy('accounts:logintop')
+######################################################################
 # class UpdateMemberView(UpdateView):
 #     template_name = 'Soen/logmemberupdate.html'
 #     model = soenmemberDetailM
@@ -21,6 +26,7 @@ from .forms import GenreF, SoenMemberF, soenmemberDetailF, VehicleF, SpecialEduc
 #     def get_success_url(self):
 #         return reverse('Soen:detailmember',kwargs={'number':self.object.pk})
 
+######################################################################
 @login_required()
 def UpdateMemberView(request, number):
     # data = get_object_or_404(SoenMemberM, id=number)
@@ -40,7 +46,7 @@ def UpdateMemberView(request, number):
         form2 = soenmemberDetailF(instance=data2)
     return render(request, 'Soen/logmemberupdate.html', {'form': form, 'data':data, 'form2': form2})
 
-
+######################################################################
 @login_required()
 def DetailMember(request, number):
     data = SoenMemberM.objects.get(pk=number)
@@ -51,7 +57,7 @@ def DetailMember(request, number):
     }
     return render(request, 'Soen/logmemberdetail.html', params)
 
-
+######################################################################
 @login_required()
 def LoginMemberList(request):
     data = SoenMemberM.objects.filter(genre_id=1)
@@ -69,150 +75,65 @@ def LoginShokukataList(request):
     }
     return render(request, 'Soen/loglist.html', params)
 
-
-@login_required()
-def LoginKyouryokuList(request):
-    data = SoenMemberM.objects.filter(genre_id=3)
-    params = {
-        'data': data,
-    }
-    return render(request, 'Soen/loglist.html', params)
-
-
-@login_required()
-def LoginGeneralconstractorList(request):
-    data = SoenMemberM.objects.filter(genre_id=4)
-    params = {
-        'data': data,
-    }
-    return render(request, 'Soen/loglist.html', params)
-
-
 @login_required()
 def LoginUncategoryList(request):
-    data = SoenMemberM.objects.filter(genre_id=4)
+    data = SoenMemberM.objects.filter(genre_id=5)
     params = {
         'data': data,
     }
     return render(request, 'Soen/loglist.html', params)
-
-
-# :::::::::::::::::::::::::::::::::
-# @login_required()
-# def CreateMemberDetail(request):
-#     params = {
-#         'titile': 'oha',
-#         'form': soenmemberDetailF,
-#     }
-#     if request.method == 'POST':
-#         obj = soenmemberDetailM()
-#         record = soenmemberDetailF(request.POST, instance=obj)
-#         if record.is_valid():
-#             record.save()
-#             return redirect(to='accounts:logintop')
-#     return render(request, 'Soen/logcreateDefBase.html', params)
-
-class CreateMemberDetail(CreateView, LoginRequiredMixin):
-    model = soenmemberDetailM
-    form_class = soenmemberDetailF
-    template_name = 'Soen/logcreateDefBase.html'
-
-    def get_success_url(self):
-        return reverse('accounts:logintop')
-
-class CreateHealth(CreateView, LoginRequiredMixin):
-    model = HealthM
-    form_class = HealthF
-    template_name = 'Soen/logcreatemember.html'
-
-    def get_success_url(self):
-        return reverse('accounts:logintop')
-
-
-class CreateVehicle(CreateView, LoginRequiredMixin):
-    model = VehicleM
-    form_class = VehicleF
-    template_name = 'Soen/logcreatemember.html'
-
-    def get_success_url(self):
-        return reverse('accounts:lohintop')
-
 
 # *********************************** login before-after ***********************************************
 class SoenTop(TemplateView):
     template_name = 'Soen/top.html'
 
-
+######################################################################
 class CreateMember(CreateView):
     model = SoenMemberM
     form_class = SoenMemberF
-    template_name = 'Soen/logcreatemember.html'
+    template_name = 'Soen/createmember.html'
 
     def get_success_url(self):
         return reverse('Soen:soentop')
 
-
+######################################################################
 class SoenMember(ListView):
     template_name = 'Soen/soenmember.html'
     context_object_name = 'Members'
     # model=SoenMemberM#queryset = SoenMemberM.objects.all()
     queryset = SoenMemberM.objects.filter(genre_id=1)
 
-
 class ShokukataMember(ListView):
     template_name = 'Soen/soenmember.html'
     context_object_name = 'Members'
     queryset = SoenMemberM.objects.filter(genre_id=2)
 
-
-class KyouryokuMember(ListView):
-    template_name = 'Soen/soenmember.html'
-    context_object_name = 'Members'
-    queryset = SoenMemberM.objects.filter(genre_id=3)
-
-
-class GeneralContractor(ListView):
-    template_name = 'Soen/soenmember.html'
-    context_object_name = 'Members'
-    queryset = SoenMemberM.objects.filter(genre_id=4)
-
-
 class Uncategory(ListView):
     template_name = 'Soen/soenmember.html'
     context_object_name = 'Members'
     queryset = SoenMemberM.objects.filter(genre_id=5)
-
-
-# def soenmemberDtail(request,number):
-#     detailMem=SoenMemberM.objects.get(pk=number)
-#     params={'data':detailMem,}
-#     return render(request,'Soen/soenmemberDetail.html',params)
-
+#################################################################################
 class soenmemberDetail(DetailView):
     model = SoenMemberM
     context_object_name = 'MemberD'
     template_name = 'Soen/soenmemberDetail.html'
 
-
 class soenmemberHealth(DetailView):
     model = SoenMemberM
     context_object_name = 'MemberH'
-    template_name = 'Soen/health.html'
-
+    template_name = 'Soen/create/health.html'
 
 class soenmemberVehicle(DetailView):
     model = SoenMemberM
     context_object_name = 'MemberV'
-    template_name = 'Soen/vehicle.html'
-
+    template_name = 'Soen/create/vehicle.html'
 
 class soenmemberInsurance(DetailView):
     model = SoenMemberM
     context_object_name = 'MemberI'
-    template_name = 'Soen/insurance.html'
-
+    template_name = 'Soen/create/insurance.html'
 
 class soenmemberEducationSkillLicence(DetailView):
     model = SoenMemberM
     context_object_name = 'MemberS'
-    template_name = 'Soen/skill.html'
+    template_name = 'Soen/create/skill.html'

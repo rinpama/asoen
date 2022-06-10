@@ -15,10 +15,16 @@
     </div>
     <br>
 {% endblock %}
-
 {% block navA %}
-    health
-    <div class="button_radius"><a href="{% url 'Soen:soenmember' %}">社員List</a></div><br>
+    vehicle
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <div class="button_radius"><a href="{% url 'Soen:soenmember' %}">社　員　List</a></div><br>
+    <div class="button_radius"><a href="{% url 'Soen:shokukatamember' %}">職　方　List</a></div><br>
+    <div class="button_radius"><a href="{% url 'Soen:uncategory' %}">未　分類List</a></div><br>
 {% endblock %}
 
 {% block main %}
@@ -26,12 +32,14 @@
     <table class="normal_table">
         <tr>
             <th>Name</th>
-            <th>健康診断受診日</th>
+            <th>車両番号</th>
+            <th>車検証_型式</th>
         </tr>
         <tr>
-            <td>{{ MemberH.name }}</td>
-            {% for Mhealth in MemberH.soenmemberHealth.all %}
-                <td>{{ Mhealth.consaltationDay }}</td>
+            <td>{{ MemberV.name }}</td>
+            {% for Mvehicle in MemberV.soenmemberVehicle.all %}
+                <td>{{ Mvehicle.vehicleNumber }}</td>
+                <td>{{ Mvehicle.vehicleModel }}</td>>
             {% endfor %}
         </tr>
     </table>

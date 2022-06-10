@@ -1,0 +1,22 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}{% endblock %}
+{% block meta_description %}{% endblock %}
+{{ title }}
+
+{% block mainnav %}
+{% endblock %}
+
+{% block navA %}
+    <a href="{% url 'accounts:logintop' %}"><p>loginTop</p></a>
+{% endblock %}
+
+{% block main %}
+    <br>MemberDetail
+        <form method="post">
+        {% csrf_token %}
+        <p>{{ object.name }}/{{ object.genre }}を削除しますか？</p>
+        <input type="submit" value="削除する">
+    </form>
+{% endblock %}

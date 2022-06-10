@@ -14,7 +14,7 @@
 
 {% block main %}
     <br>MemberDetail
-    <table style="background-color:white;">
+    <table class="normal_table" style="background-color:white;">
         <tr>
             <th>所属</th>
             <th>名前</th>
@@ -23,13 +23,14 @@
             <td>{{ data.genre }}</td>
             <td>{{ data.name }}</td>
 
-{#            <td>{{ data2.add }}</td>#}
+            {#            <td>{{ data2.add }}</td>#}
             <td>{{ data.soenmemberD.age }}</td>
             <td>{{ data.soenmemberD.add }}</td>
 
             <td><a href="{% url 'Soen:updatemember' data.pk %}">編集</a></td>
+            <td><a href="{% url 'Soen:deletemember' data.pk %}">削除</a></td>
             <br>
-            {#                <td><a href="{% url 'Soen:deletemember' member.pk %}">削除</a></td>#}
+            {# <td><a href="{% url 'Soen:deletemember' member.pk %}">削除</a></td>#}
         <tr>
 
     </table>
