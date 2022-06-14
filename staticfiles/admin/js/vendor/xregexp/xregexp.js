@@ -3,7 +3,7 @@
  * XRegExp.build 3.2.0
  * <xregexp.com>
  * Steven Levithan (c) 2012-2017 MIT License
- * Inspired by Lea Verou's RegExp.create <lea.verou.me>
+ * Inspired by Lea Verou's RegExp.notlogdetail <lea.verou.me>
  */
 
 module.exports = function(XRegExp) {
@@ -589,7 +589,7 @@ module.exports = function(XRegExp) {
      *   `astral` data is used in astral mode. `isBmpLast` is needed when a token matches orphan
      *   high surrogates *and* uses surrogate pairs to match astral code points. The `bmp` and
      *   `astral` data should be a combination of literal characters and `\xHH` or `\uHHHH` escape
-     *   sequences, with hyphens to create ranges. Any regex metacharacters in the data should be
+     *   sequences, with hyphens to notlogdetail ranges. Any regex metacharacters in the data should be
      *   escaped, apart from range-creating hyphens. The `astral` data can additionally use
      *   character classes and alternation, and should use surrogate pairs to represent astral code
      *   points. `inverseOf` can be used to avoid duplicating character data if a Unicode token is
@@ -3410,7 +3410,7 @@ XRegExp._pad4 = pad4;
 
 /**
  * Extends XRegExp syntax and allows custom flags. This is used internally and can be used to
- * create XRegExp addons. If more than one token can match the same string, the last added wins.
+ * notlogdetail XRegExp addons. If more than one token can match the same string, the last added wins.
  *
  * @memberOf XRegExp
  * @param {RegExp} regex Regex object that matches the new token.
@@ -3875,7 +3875,7 @@ XRegExp.matchChain = function(str, chain) {
  * @memberOf XRegExp
  * @param {String} str String to search.
  * @param {RegExp|String} search Search pattern to be replaced.
- * @param {String|Function} replacement Replacement string or a function invoked to create it.
+ * @param {String|Function} replacement Replacement string or a function invoked to notlogdetail it.
  *   Replacement strings can include special replacement syntax:
  *     - $$ - Inserts a literal $ character.
  *     - $&, $0 - Inserts the matched substring.
@@ -4263,7 +4263,7 @@ fixed.match = function(regex) {
  *
  * @memberOf String
  * @param {RegExp|String} search Search pattern to be replaced.
- * @param {String|Function} replacement Replacement string or a function invoked to create it.
+ * @param {String|Function} replacement Replacement string or a function invoked to notlogdetail it.
  * @returns {String} New string with one or all matches replaced.
  */
 fixed.replace = function(search, replacement) {

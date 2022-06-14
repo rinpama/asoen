@@ -38,7 +38,7 @@ class soenmemberDetailM(models.Model):
         verbose_name_plural = "SoenMember詳細"
 
 class VehicleM(models.Model):
-    man = models.ManyToManyField(SoenMemberM, related_name='soenmemberVehicle', default='')
+    man = models.ManyToManyField(SoenMemberM)
     vehicleNumber = models.CharField(verbose_name="車両番号", max_length=20, default='佐世保　あ　50　50-50')
     firstUse = models.DateField(verbose_name="使用期間開始", null=True, blank=True)
     finishUse = models.DateField(verbose_name="使用期間終了", null=True, blank=True)
@@ -72,9 +72,9 @@ class VehicleM(models.Model):
 
 class HealthM(models.Model):
     man = models.OneToOneField(SoenMemberM, on_delete=models.CASCADE, related_name='soenmemberHealth',default='')
-    consaltationDay = models.DateField(verbose_name="診察日", null=True, blank=True)
-    bloodPressureHigh = models.IntegerField(verbose_name='血圧(高)', null=True, blank=True)
-    bloodPressureLow = models.IntegerField(verbose_name='血圧(低)', null=True, blank=True)
+    consaltationDay = models.DateField(verbose_name="診察日", null=True, blank=True, default='')
+    bloodPressureHigh = models.IntegerField(verbose_name='血圧(高)', null=True, blank=True, default='')
+    bloodPressureLow = models.IntegerField(verbose_name='血圧(低)', null=True, blank=True, default='')
     def __str__(self):
         return str(self.consaltationDay)
     class Meta:
@@ -110,21 +110,21 @@ class InsuranceM(models.Model):
         ('3', '-'),
     ]
     man = models.OneToOneField(SoenMemberM, on_delete=models.CASCADE, related_name='soenmemberInsurance', default='')
-    Insurance_station = models.CharField(verbose_name="保険＿事業所名", max_length=100, null=True, blank=True)
-    Insurance_station_number = models.CharField(verbose_name="保険＿事業所名_整理記号･番号", max_length=100, null=True, blank=True)
+    Insurance_station = models.CharField(verbose_name="保険＿事業所名", max_length=100, null=True, blank=True, default='')
+    Insurance_station_number = models.CharField(verbose_name="保険＿事業所名_整理記号･番号", max_length=100, null=True, blank=True, default='')
     healthInsurance = models.CharField(verbose_name="健康保険", max_length=100, null=True, blank=True,
-                                       choices=healthInsurance_list)
-    file1 = models.FileField(verbose_name="Link1", max_length=100, null=True, blank=True)
+                                       choices=healthInsurance_list, default='')
+    file1 = models.FileField(verbose_name="Link1", max_length=100, null=True, blank=True, default='')
     pensionInsurance = models.CharField(verbose_name="年金保険", max_length=100, null=True, blank=True,
-                                        choices=pensionInsurance_list)
-    file2 = models.FileField(verbose_name="Link2", max_length=100, null=True, blank=True)
+                                        choices=pensionInsurance_list, default='')
+    file2 = models.FileField(verbose_name="Link2", max_length=100, null=True, blank=True, default='')
     employmentinsurance = models.CharField(verbose_name="雇用保険", max_length=100, null=True, blank=True,
-                                           choices=employmentinsurance_list)
-    employmentinsurance_number = models.CharField(verbose_name="雇用保険番号", max_length=100, null=True, blank=True)
-    file3 = models.FileField(verbose_name="Link3", max_length=100, null=True, blank=True)
+                                           choices=employmentinsurance_list, default='')
+    employmentinsurance_number = models.CharField(verbose_name="雇用保険番号", max_length=100, null=True, blank=True, default='')
+    file3 = models.FileField(verbose_name="Link3", max_length=100, null=True, blank=True, default='')
     retirementCooperation = models.CharField(verbose_name="建退協", max_length=100, null=True, blank=True,
-                                             choices=free_list)
-    file4 = models.FileField(verbose_name="Link4", max_length=100, null=True, blank=True)
+                                             choices=free_list, default='')
+    file4 = models.FileField(verbose_name="Link4", max_length=100, null=True, blank=True, default='')
     def __str__(self):
         return str(self.Insurance_station)
     class Meta:

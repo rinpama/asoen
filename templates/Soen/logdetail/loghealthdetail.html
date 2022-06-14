@@ -1,0 +1,37 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}{% endblock %}
+{% block meta_description %}{% endblock %}
+{{ title }}
+
+{% block mainnav %}
+{% endblock %}
+
+{% block navA %}
+    <a href="{% url 'accounts:logintop' %}"><p>loginTop</p></a>
+{% endblock %}
+
+{% block main %}
+    <br>MemberDetail
+    <table class="normal_table" style="background-color:white;">
+        <tr>
+            <th>所属</th>
+            <th>名前</th>
+            <th>血圧(上)</th>
+            <th>血圧(下)</th>
+        </tr>
+        <tr>
+            <td>{{ data.genre }}</td>
+            <td>{{ data.name }}</td>
+            {#            <td>{{ data2.add }}</td>#}
+            <td>{{ data.soenmemberHealth.bloodPressureHigh }}</td>
+            <td>{{ data.soenmemberHealth.bloodPressureLow }}</td>
+
+            <td><a href="{% url 'Soen:updatehealth' data.pk %}">編集</a></td>
+
+            <br>
+        <tr>
+
+    </table>
+{% endblock %}

@@ -14,13 +14,18 @@
 
 
 {% block navA %}
-        <a href="{% url 'accounts:logintop' %}"><p>loginTop</p></a>
+        <div class="btn_bluered">
+        <a href="{% url 'Soen:soentop' %}">Soen</a>
+    </div>
 {% endblock %}
 
 {% block main %}
+    {{ name }}
     <form action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        {{ form2.as_p }}
+        {{ form3.as_p }}
         <button type='submit'>save</button>
     </form>
 {% endblock %}

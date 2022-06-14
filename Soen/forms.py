@@ -22,35 +22,29 @@ class soenmemberDetailF(forms.ModelForm):
 class InsuranceF(forms.ModelForm):
     class Meta():
         model=InsuranceM
-        fields = '__all__'
-
-
-
+        fields = ['Insurance_station', 'healthInsurance', 'pensionInsurance', 'employmentinsurance']
 class VehicleF(forms.ModelForm):
     class Meta():
         model=VehicleM
-        fields = '__all__'
-
-
-class SpecialEducationF(forms.ModelForm):
-    class Meta():
-        model=SpecialEducationM
-        fields = '__all__'
-
+        fields = ['vehicleNumber', 'firstUse', 'finishUse', 'vehicleModel']
 
 class HealthF(forms.ModelForm):
     class Meta():
         model=HealthM
-        fields = '__all__'
+        fields = ['consaltationDay', 'bloodPressureHigh', 'bloodPressureLow']
 
+class SpecialEducationF(forms.ModelForm):
+    class Meta():
+        model=SpecialEducationM
+        fields = ['specialeducation']
 
 class SkillF(forms.ModelForm):
     class Meta():
         model=SkillM
-        fields = '__all__'
+        fields = ['skill_name']
 
 
 class LicenceF(forms.ModelForm):
     class Meta():
         model=LicenceM
-        fields = '__all__'
+        fields = ['licence_name']

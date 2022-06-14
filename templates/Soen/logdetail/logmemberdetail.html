@@ -18,11 +18,12 @@
         <tr>
             <th>所属</th>
             <th>名前</th>
+            <th>年齢</th>
+            <th>住所</th>
         </tr>
         <tr>
             <td>{{ data.genre }}</td>
             <td>{{ data.name }}</td>
-
             {#            <td>{{ data2.add }}</td>#}
             <td>{{ data.soenmemberD.age }}</td>
             <td>{{ data.soenmemberD.add }}</td>
@@ -30,7 +31,6 @@
             <td><a href="{% url 'Soen:updatemember' data.pk %}">編集</a></td>
             <td><a href="{% url 'Soen:deletemember' data.pk %}">削除</a></td>
             <br>
-            {# <td><a href="{% url 'Soen:deletemember' member.pk %}">削除</a></td>#}
         <tr>
 
     </table>

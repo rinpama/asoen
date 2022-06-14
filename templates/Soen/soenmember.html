@@ -8,7 +8,7 @@
 {{ title }}
 
 {% block mainnav %}
-        <br>
+    <br>
     <div class="btn_bluered">
         <a href="{% url 'Soen:soentop' %}">Soen</a>
     </div>
@@ -35,12 +35,43 @@
     <br>MemberList
     {% for member in Members %}
         <tr>
-            <div><li style="background-color:white;">({{ member.genre }}){{ member.name }}
-                <a class="btn btn-normal" href="{% url 'Soen:soenmemberDetail' member.id %}"> 詳細 </a>
-            <a class="btn btn-normal" href="{% url 'Soen:vehicle' member.id %}"> 車両登録 </a>
-            <a class="btn btn-normal" href="{% url 'Soen:health' member.id %}"> 健康診断 </a>
-            <a class="btn btn-normal" href="{% url 'Soen:insurance' member.id %}"> 社会保険 </a>
-            <a class="btn btn-normal" href="{% url 'Soen:educationskilllicence' member.id %}"> Licence </a></li></div>
+            <div>
+                <li style="background-color:white;">({{ member.genre }}){{ member.name }}
+
+                    {#                                        {% if member.soenmemberD %}#}
+                    {% if member.soenmemberD %}
+                        {#                        <a class="btn btn-normal" href="{% url 'Soen:updatemember' member.id %}"> 詳細update </a>#}
+                        <a class="btn btn-normal" href="{% url 'Soen:soenmemberDetail' member.id %}"> 詳細 </a>
+                    {% else %}
+                        <a class="btn btn-normal" href="{% url 'Soen:createdetailmember' member.id %}"> 詳細Create </a>
+                    {% endif %}
+                    {% if member.soenmemberHealth %}
+                        <a class="btn btn-normal" href="{% url 'Soen:health' member.id %}"> 健康診断 </a>
+                    {% else %}
+                        <a class="btn btn-normal" href="{% url 'Soen:createhealth' member.id %}">健診Create </a>
+                    {% endif %}
+                    {% if member.soenmemberInsurance %}
+                        <a class="btn btn-normal" href="{% url 'Soen:insurance' member.id %}"> 社会保険 </a>
+                    {% else %}
+                        <a class="btn btn-normal" href="{% url 'Soen:createinsurance' member.id %}">社保Create </a>
+                    {% endif %}
+                    {% if member.soenmemberEducation and member.soenmemberSkill and member.soenmemberLicence %}
+                        <a class="btn btn-normal" href="{% url 'Soen:educationskilllicence' member.id %}"> Licence </a>
+                    {% else %}
+                        <a class="btn btn-normal"
+                           href="{% url 'Soen:createeducationskilllicence' member.id %}">技能Create </a>
+                    {% endif %}
+                    {% if member.vehicle %}
+                        <a class="btn btn-normal" href="{% url 'Soen:vehicle' member.id %}"> 登録車両 </a>
+                    {% else %}
+                        <a class="btn btn-normal" href="{% url 'Soen:vehicle' member.id %}">車両Create </a>
+                    {% endif %}
+
+
+
+
+                    </li>
+            </div>
 
         </tr>
     {% endfor %}

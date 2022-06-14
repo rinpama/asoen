@@ -1,11 +1,12 @@
 {% extends 'BaseLayout.html' %}
 {% load static %}
 
-{% block cssstyle %}<link rel="stylesheet" type="text/css" href="{% static 'css/TopLayout.css' %}">{% endblock %}
+{% block cssstyle %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/TopLayout.css' %}">{% endblock %}
 {% block meta_description %}{% endblock %}
 {{ title }}
 {% block mainnav %}
-        <br>
+    <br>
     <div class="btn_bluered">
         <a href="{% url 'Soen:soentop' %}">Soen</a>
     </div>
@@ -17,7 +18,7 @@
 {% endblock %}
 
 {% block navA %}
-    <br><br>
+    skill
     <br><br>
     <br><br>
     <br><br>
@@ -34,21 +35,16 @@
         <tr>
             <th>Genre</th>
             <th>Name</th>
-{#            <th>住所</th>#}
-{#            <th>Phone</th>#}
-            <th>年齢</th>
-            <th>血液型</th>
-
+            <th>特別教育</th>
+            <th>技能講習</th>
+            <th>免許</th>
         </tr>
         <tr>
-            <td>{{ MemberD.genre }}</td>
-            <td>{{ MemberD.name }}</td>
-            {% for Mdetail in MemberD.soenmemberD.all %}
-{#                <td>{{ Mdetail.add }}</td>#}
-{#                <td>{{ Mdetail.tel }}</td>#}
-                <td>{{ Mdetail.age }}</td>
-                <td>{{ Mdetail.bloodtype }}</td>
-            {% endfor %}
+            <td>{{ MemberS.genre }}</td>
+            <td>{{ MemberS.name }}</td>
+            <td>{{ MemberS.soenmemberEducation.specialeducation }}</td>
+            <td>{{ MemberS.soenmemberSkill.skill_name }}</td>
+            <td>{{ MemberS.soenmemberLicence.licence_name }}</td>
         </tr>
     </table>
 {% endblock %}

@@ -1,7 +1,8 @@
 {% extends 'BaseLayout.html' %}
 {% load static %}
 
-{% block cssstyle %}<link rel="stylesheet" type="text/css" href="{% static 'css/TopLayout.css' %}">{% endblock %}
+{% block cssstyle %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/TopLayout.css' %}">{% endblock %}
 {% block meta_description %}{% endblock %}
 {{ title }}
 {% block mainnav %}
@@ -15,8 +16,9 @@
     </div>
     <br>
 {% endblock %}
+
 {% block navA %}
-    vehicle
+    health
     <br><br>
     <br><br>
     <br><br>
@@ -28,19 +30,16 @@
 {% endblock %}
 
 {% block main %}
-    <br>
-    <table class="normal_table">
-        <tr>
-            <th>Name</th>
-            <th>車両番号</th>
-            <th>車検証_型式</th>
-        </tr>
-        <tr>
-            <td>{{ MemberV.name }}</td>
-            {% for Mvehicle in MemberV.soenmemberVehicle.all %}
-                <td>{{ Mvehicle.vehicleNumber }}</td>
-                <td>{{ Mvehicle.vehicleModel }}</td>>
-            {% endfor %}
-        </tr>
-    </table>
+<br>
+<table class="normal_table">
+    <tr>
+        <th>Name</th>
+        <th>健康診断受診日</th>
+    </tr>
+    <tr>
+        <td>{{ MemberH.name }}</td>
+        <td>{{ MemberH.soenmemberHealth.consaltationDay }}</td>
+
+    </tr>
+</table>
 {% endblock %}

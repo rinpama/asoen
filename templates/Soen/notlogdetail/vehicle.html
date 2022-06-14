@@ -15,9 +15,8 @@
     </div>
     <br>
 {% endblock %}
-
 {% block navA %}
-    health
+    vehicle
     <br><br>
     <br><br>
     <br><br>
@@ -33,13 +32,13 @@
     <table class="normal_table">
         <tr>
             <th>Name</th>
-            <th>健康診断受診日</th>
+            <th>車両番号</th>
+            <th>車検証_型式</th>
         </tr>
         <tr>
-            <td>{{ MemberH.name }}</td>
-            {% for Mhealth in MemberH.soenmemberHealth.all %}
-                <td>{{ Mhealth.consaltationDay }}</td>
-            {% endfor %}
+            <td>{{ MemberV.name }}</td>
+                <td>{{ MemberV.soenmemberVehicle.vehicleNumber }}</td>
+                <td>{{ MemberV.soenmemberVehicle.vehicleModel }}</td>>
         </tr>
     </table>
 {% endblock %}

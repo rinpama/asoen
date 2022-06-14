@@ -1,0 +1,39 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}{% endblock %}
+{% block meta_description %}{% endblock %}
+{{ title }}
+
+{% block mainnav %}
+{% endblock %}
+
+{% block navA %}
+    <a href="{% url 'accounts:logintop' %}"><p>loginTop</p></a>
+{% endblock %}
+
+{% block main %}
+    <br>MemberDetail
+    <table class="normal_table" style="background-color:white;">
+        <tr>
+            <th>所属</th>
+            <th>名前</th>
+            <th>特別教育</th>
+            <th>技能講習</th>
+            <th> 免  許 </th>
+        </tr>
+        <tr>
+            <td>{{ data.genre }}</td>
+            <td>{{ data.name }}</td>
+            {#            <td>{{ data2.add }}</td>#}
+            <td>{{ data.soenmemberEducation.specialeducation }}</td>
+            <td>{{ data.soenmemberSkill.skill_name }}</td>
+            <td>{{ data.soenmemberLicence.licence_name }}</td>
+
+            <td><a href="{% url 'Soen:updateskill' data.pk %}">編集</a></td>
+
+            <br>
+        <tr>
+
+    </table>
+{% endblock %}
