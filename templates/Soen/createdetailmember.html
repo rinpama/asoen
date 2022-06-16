@@ -21,7 +21,7 @@
 
 {% block main %}
     {{ name }}
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         {{ form2.as_p }}

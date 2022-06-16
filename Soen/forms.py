@@ -26,8 +26,8 @@ class InsuranceF(forms.ModelForm):
 class VehicleF(forms.ModelForm):
     class Meta():
         model=VehicleM
-        fields = ['vehicleNumber', 'firstUse', 'finishUse', 'vehicleModel']
-
+        # fields = ['vehicleNumber','man', 'vehicleModel']
+        fields='__all__'
 class HealthF(forms.ModelForm):
     class Meta():
         model=HealthM
@@ -36,7 +36,7 @@ class HealthF(forms.ModelForm):
 class SpecialEducationF(forms.ModelForm):
     class Meta():
         model=SpecialEducationM
-        fields = ['specialeducation']
+        fields = ['specialeducation','file1','image1']
 
 class SkillF(forms.ModelForm):
     class Meta():

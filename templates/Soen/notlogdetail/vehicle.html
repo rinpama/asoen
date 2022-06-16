@@ -35,10 +35,13 @@
             <th>車両番号</th>
             <th>車検証_型式</th>
         </tr>
-        <tr>
-            <td>{{ MemberV.name }}</td>
-                <td>{{ MemberV.soenmemberVehicle.vehicleNumber }}</td>
-                <td>{{ MemberV.soenmemberVehicle.vehicleModel }}</td>>
-        </tr>
+
+            {% for veh in vehicle %}
+
+             <tr>   <td>{{ Memberv.name }}</td>
+                <td>   {{ veh.vehicleNumber }}</td>
+                <td>{{ veh.vehicleModel }}</td></tr>
+            {% endfor %}
+
     </table>
 {% endblock %}

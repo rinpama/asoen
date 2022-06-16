@@ -1,0 +1,32 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}{% endblock %}
+{% block meta_description %}{% endblock %}
+{{ title }}
+
+{% block mainnav %}
+{% endblock %}
+
+{% block navA %}
+    <a href="{% url 'accounts:logintop' %}"><p>loginTop</p></a>
+{% endblock %}
+
+{% block main %}
+    <br>VehicleList
+    <a href="{% url 'Soen:createvehicle' %}">新規作成はlogout</a>
+    <table class="normal_table;">
+        <tr>
+            <th>データ更新日</th>
+            <th>車両番号</th>
+        </tr>
+        {% for car in data %}
+            <tr>
+                <td>{{ car.updated_at }}</td>
+                <td>{{ car.vehicleNumber }}</td>
+                <td><a href="{% url 'Soen:updatevehicle' car.pk %}">編集</a></td>
+                <td><a href="">削除</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

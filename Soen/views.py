@@ -74,10 +74,10 @@ def UpdateSkillView(request, number):
     data3 = data.soenmemberEducation
     data4 = data.soenmemberLicence
     if request.method == 'POST':
-        form = SoenMemberF(request.POST, instance=data)
-        form2 = SkillF(request.POST, instance=data2)
-        form3 = SpecialEducationF(request.POST, instance=data3)
-        form4 = LicenceF(request.POST, instance=data4)
+        form = SoenMemberF(request.POST,request.FILES, instance=data)
+        form2 = SkillF(request.POST,request.FILES, instance=data2)
+        form3 = SpecialEducationF(request.POST,request.FILES, instance=data3)
+        form4 = LicenceF(request.POST,request.FILES, instance=data4)
         if all((form.is_valid(), form2.is_valid(), form3.is_valid(), form4.is_valid())):
             member = form.save()
             detail = form2.save(commit=False)
@@ -207,6 +207,13 @@ def LoginUncategoryList(request):
         'data': data,
     }
     return render(request, 'Soen/loglist.html', params)
+@login_required()
+def LoginVehicleList(request):
+    data = VehicleM.objects.all()
+    params = {
+        'data': data,
+    }
+    return render(request, 'Soen/logvehiclelist.html', params)
 
 
 # *********************************** login before-after ***********************************************
@@ -280,28 +287,31 @@ def CreateEducationSkillLicence(request, number):
     }
     if (request.method == 'POST'):
         data = SpecialEducationM(man_id=name.id)
-        record = SpecialEducationF(request.POST, instance=data)
+        record = SpecialEducationF(request.POST,request.FILES, instance=data)
+        # if record.is_valid():
         record.save()
         data2 = SkillM(man_id=name.id)
         record2 = SkillF(request.POST, instance=data2)
+        # if record2.is_valid():
         record2.save()
         data3 = LicenceM(man_id=name.id)
         record3 = LicenceF(request.POST, instance=data3)
+        # if record3.is_valid():
         record3.save()
         return redirect(to='Soen:soentop')
     return render(request, 'Soen/createdetailmember.html', params)
 
 
-def CreateVehicle(request, number):
-    name = SoenMemberM.objects.get(pk=number)
+def CreateVehicle(request):
+    # name = SoenMemberM.objects.get(pk=number)
     params = {
-        'name': name.name,
+        # 'name': name.name,
         # 'form':soenmemberDetailF(instance=data),
         'form': VehicleF()
     }
     if (request.method == 'POST'):
-        data = VehicleM(man_id=name.id)
-        record = VehicleF(request.POST, instance=data)
+        # data = VehicleM(man_id=name.id)
+        record = VehicleF(request.POST)#, instance=data
         record.save()
         return redirect(to='Soen:soentop')
     return render(request, 'Soen/createdetailmember.html', params)
@@ -354,22 +364,9 @@ def soenmemberEducationSkillLicence(request, number):
 
 def soenmemberVehicle(request, number):
     MemberV = SoenMemberM.objects.get(pk=number)
-    params = {'Memberv': MemberV, }
+    vehicle=MemberV.vehiclem_set.filter(man__name=MemberV.name)
+    params = {
+        'Memberv': MemberV,
+        'vehicle':vehicle
+    }
     return render(request, 'Soen/notlogdetail/vehicle.html', params)
-
-# class soenmemberHealth(DetailView):
-#     model = SoenMemberM
-#     context_object_name = 'MemberH'
-#     template_name = 'Soen/notlogdetail/health.html'
-# class soenmemberVehicle(DetailView):
-#     model = SoenMemberM
-#     context_object_name = 'MemberV'
-#     template_name = 'Soen/notlogdetail/vehicle.html'
-# class soenmemberInsurance(DetailView):
-#     model = SoenMemberM
-#     context_object_name = 'MemberI'
-#     template_name = 'Soen/notlogdetail/insurance.html'
-# class soenmemberEducationSkillLicence(DetailView):
-#     model = SoenMemberM
-#     context_object_name = 'MemberS'
-#     template_name = 'Soen/notlogdetail/skill.html'

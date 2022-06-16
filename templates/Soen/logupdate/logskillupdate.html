@@ -14,7 +14,7 @@
 
 {% block main %}
     <br>MemberUpdate
-    <form action="{% url 'Soen:updateskill' data.pk %}" method="POST">
+    <form action="{% url 'Soen:updateskill' data.pk %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         {{ form2.as_p }}

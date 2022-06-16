@@ -61,16 +61,11 @@
                         <a class="btn btn-normal"
                            href="{% url 'Soen:createeducationskilllicence' member.id %}">技能Create </a>
                     {% endif %}
-                    {% if member.vehicle %}
-                        <a class="btn btn-normal" href="{% url 'Soen:vehicle' member.id %}"> 登録車両 </a>
-                    {% else %}
-                        <a class="btn btn-normal" href="{% url 'Soen:vehicle' member.id %}">車両Create </a>
-                    {% endif %}
+
+                    {#                        <a class="btn btn-normal" href="{% url 'Soen:vehicle' member.id %}"> 登録車両 </a>#}
 
 
-
-
-                    </li>
+                </li>
             </div>
 
         </tr>

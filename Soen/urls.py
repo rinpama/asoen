@@ -20,11 +20,12 @@ urlpatterns = [
     path('createhealth/<int:number>', CreateHealth, name='createhealth'),
     path('createinsurance/<int:number>', CreateInsurance, name='createinsurance'),
     path('createeducationskilllicence/<int:number>', CreateEducationSkillLicence, name='createeducationskilllicence'),
-    path('createvehicle/<int:number>', CreateVehicle, name='createvehicle'),
+    path('createvehicle', CreateVehicle, name='createvehicle'),
 
     path('loginmemberlist', LoginMemberList, name='loginmemberlist'),
     path('loginshokukatalist', LoginShokukataList, name='loginshokukatalist'),
     path('loginuncategorylist', LoginUncategoryList, name='loginuncategorylist'),
+path('loginvehiclelist', LoginVehicleList, name='loginvehiclelist'),
 
     path('logdetailmember/<int:number>', LoginDetailMember, name='logindetailmember'),
     path('logdetailhealth/<int:number>', LoginDetailHealth, name='logindetailhealth'),

@@ -39,6 +39,7 @@ class soenmemberDetailM(models.Model):
 
 class VehicleM(models.Model):
     man = models.ManyToManyField(SoenMemberM)
+    updated_at=models.DateField('更新日',auto_now=True)
     vehicleNumber = models.CharField(verbose_name="車両番号", max_length=20, default='佐世保　あ　50　50-50')
     firstUse = models.DateField(verbose_name="使用期間開始", null=True, blank=True)
     finishUse = models.DateField(verbose_name="使用期間終了", null=True, blank=True)
@@ -154,6 +155,10 @@ class SpecialEducationM(models.Model):
     ]
     specialeducation = models.CharField(verbose_name="特別教育", max_length=30, null=True, blank=True,
                                         choices=specialeducation_list)
+    file1 = models.FileField(verbose_name="添付ファイル", upload_to='uploads/%Y/%m/%d/',null=True, blank=True)# validators=[FileExtensionValidator(['pdf', ])
+    image1=models.ImageField(verbose_name="添付画像",upload_to='image/',null=True, blank=True)#,height_field='url_height',width_field='url_width'
+    # url_height = models.IntegerField(editable=False,)
+    # url_width = models.IntegerField(editable=False, )
     def __str__(self):
         return str(self.specialeducation)
     class Meta:
@@ -188,7 +193,7 @@ class SkillM(models.Model):
     skill_name = models.CharField(verbose_name="技能講習", max_length=30, null=True, blank=True, choices=skillTraning_list)
 
     def __str__(self):
-        return self.skill_name
+        return str(self.skill_name)
     class Meta:
         verbose_name_plural = "技能講習"
 
@@ -222,7 +227,7 @@ class LicenceM(models.Model):
     licence_name = models.CharField(verbose_name="免許", max_length=40, null=True, blank=True, choices=licence_list)
 
     def __str__(self):
-        return self.licence_name
+        return str(self.licence_name)
     class Meta:
         verbose_name_plural = "免許"
 

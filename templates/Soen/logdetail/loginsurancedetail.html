@@ -29,9 +29,11 @@
             <td>{{ data.soenmemberInsurance.healthInsurance }}</td>
             <td>{{ data.soenmemberInsurance.pensionInsurance }}</td>
             <td>{{ data.soenmemberInsurance.employmentinsurance }}</td>
-
+{% if data.soenmemberInsurance %}
             <td><a href="{% url 'Soen:updateinsurance' data.pk %}">編集</a></td>
-
+{% else %}
+    <td><a href="{% url 'Soen:createinsurance' data.pk %}">社保Create</a></td>
+            {% endif %}
             <br>
         <tr>
 

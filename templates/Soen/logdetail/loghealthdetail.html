@@ -27,9 +27,11 @@
             {#            <td>{{ data2.add }}</td>#}
             <td>{{ data.soenmemberHealth.bloodPressureHigh }}</td>
             <td>{{ data.soenmemberHealth.bloodPressureLow }}</td>
-
-            <td><a href="{% url 'Soen:updatehealth' data.pk %}">編集</a></td>
-
+            {% if data.soenmemberHealth %}
+                <td><a href="{% url 'Soen:updatehealth' data.pk %}">編集</a></td>
+            {% else %}
+                <td><a href="{% url 'Soen:createhealth' data.pk %}">健診Create</a></td>
+            {% endif %}
             <br>
         <tr>
 

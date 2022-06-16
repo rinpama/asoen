@@ -30,7 +30,7 @@ class spotcompanyDetailM(models.Model):
     tel = models.CharField('電話番号', max_length=15, default='', blank=True, null=True,validators=[RegexValidator(r'^[a-zA-Z0-9]*$','英数字のみ入力可')])
     fax = models.CharField('FAX番号', max_length=10, default='', blank=True, null=True,validators=[RegexValidator(r'^[a-zA-Z0-9]*$','英数字のみ入力可')])
     add = models.CharField('住所', max_length=100, default='', blank=True, null=True,)
-    vehicle=models.ManyToManyField('Soen.VehicleM', blank=True, null=True,)
+    vehicle=models.ManyToManyField('Soen.VehicleM', default='', blank=True, null=True,)
     def __str__(self):
         return str(self.man) + '(' + str(self.add) + ')'
     class Meta:

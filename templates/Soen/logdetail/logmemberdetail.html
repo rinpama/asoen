@@ -27,8 +27,11 @@
             {#            <td>{{ data2.add }}</td>#}
             <td>{{ data.soenmemberD.age }}</td>
             <td>{{ data.soenmemberD.add }}</td>
-
-            <td><a href="{% url 'Soen:updatemember' data.pk %}">編集</a></td>
+            {% if data.soenmemberD %}
+                <td><a href="{% url 'Soen:updatemember' data.pk %}">編集</a></td>
+            {% else %}
+                <td><a href="{% url 'Soen:createdetailmember' data.pk %}">詳細Create</a></td>
+            {% endif %}
             <td><a href="{% url 'Soen:deletemember' data.pk %}">削除</a></td>
             <br>
         <tr>
