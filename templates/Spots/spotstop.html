@@ -24,10 +24,12 @@
 {% block navA %}
     <br>
     <p>(Spots)</p>
-    <div class="button_radius"><a href="">現　場　List</a></div><br>
-    <div class="button_radius"><a href="">元　請　List</a></div><br>
-<div class="button_radius"><a href="">協力会社List</a></div><br>
-<div class="button_radius"><a href="">そうえん</a></div><br>
+    <div class="button_radius"><a href="{% url 'Spots:spotlist' %}">現　場　List</a></div><br>
+    <div class="button_radius"><a href="{% url 'Spots:generallist' %}">元　請　List</a></div><br>
+<div class="button_radius"><a href="{% url 'Spots:cooperatelist' %}">協力会社List</a></div><br>
+<div class="button_radius"><a href="{% url 'Spots:soenlist' %}">そうえん</a></div><br>
+    <a href="{% url 'Spots:spotcreate' %}"><p style="font-size:10px">新規現場 作成</p></a>
+    <a href="{% url 'Spots:companycreate' %}"><p style="font-size:10px">元上協会社 作成 </p></a>
 
 {% endblock %}
 

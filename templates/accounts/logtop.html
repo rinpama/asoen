@@ -27,10 +27,8 @@
             <a href="{% url 'Soen:loginvehiclelist' %}"><p style="font-size:10px">車両List</p></a>
         </li>
     </ul>
-
     <br>
     <div class="btn_bluered">
-
         <a href="" style="text-decoration:none; font-size:10px;">SpotsCompany</a>
     </div>
     <ul>
@@ -38,40 +36,30 @@
             <a href=""><p style="font-size:10px">㈱装苑</p></a>
         </li>
         <li>
-            <a href=""><p style="font-size:10px">協力会社</p></a>
+            <a href=""><p style="font-size:10px">協力会社List</p></a>
         </li>
         <li>
-            <a href=""><p style="font-size:10px;">元請会社</p></a>
+            <a href=""><p style="font-size:10px;">元請会社List</p></a>
         </li>
-
         <li>
-            <a href=""><p style="font-size:10px;">現場</p></a>
+            <a href=""><p style="font-size:10px;">現場 List</p></a>
         </li>
-        {#        <li>#}
-        {#            <a href="{% url 'Soen:insurancecreate' %}"><p style="font-size:15px;">社会保険</p></a>#}
-        {#        </li>#}
-        {#            <li>#}
-        {#            <a href="{% url 'Soen:skillcreate' %}"><p style="font-size:15px;">?skill?</p></a>#}
-        {#        </li>#}
     </ul>
-
     <div class="btn_bluered">
-        <a href="" style="text-decoration:none;">更新</a>
+        <a href="" style="text-decoration:none; font-size:12px;">新規作成</a>
     </div>
     <ul>
-        {#        <li>#}
-        {#            <a href="{% url 'Spots:spotcreate' %}"><p style="font-size:15px;">現場作成</p></a>#}
-        {#        </li>#}
-        {#        <li>#}
-        {#            <a href="{% url 'Spots:spotcreate' %}"><p style="font-size:15px;"></p></a>#}
-        {#        </li>#}
-        {##}
-        {#        <li>#}
-        {#            <a href="{% url 'Spots:spotcreate' %}"><p style="font-size:15px;"></p></a>#}
-        {#        </li>#}
+                <li>
+                    <a href="{% url 'Spots:spotcreate' %}"><p style="font-size:10px;">Spot</p></a>
+                </li>
+                <li>
+                    <a href="{% url 'Spots:spotcreate' %}"><p style="font-size:10px;">Company</p></a>
+                </li>
+
+                <li>
+                    <a href="{% url 'Spots:spotcreate' %}"><p style="font-size:10px;">Member</p></a>
+                </li>
     </ul>
-
-
 {% endblock %}
 
 {% block main %}

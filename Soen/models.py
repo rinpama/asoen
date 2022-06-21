@@ -133,7 +133,7 @@ class InsuranceM(models.Model):
 
 # soenmodel特別教育_選択
 class SpecialEducationM(models.Model):
-    man = models.OneToOneField(SoenMemberM, on_delete=models.PROTECT, related_name='soenmemberEducation')
+    man = models.OneToOneField(SoenMemberM, on_delete=models.CASCADE, related_name='soenmemberEducation')
     specialeducation_list = [
         ('0', '-'),
         ('研と', '研削といし取替・試運転'),
@@ -189,7 +189,7 @@ class SkillM(models.Model):
         ('技能講習19', '技能講習19'),
         ('技能講習20', '技能講習20'),
     ]
-    man = models.OneToOneField(SoenMemberM, on_delete=models.PROTECT, related_name='soenmemberSkill')
+    man = models.OneToOneField(SoenMemberM, on_delete=models.CASCADE, related_name='soenmemberSkill')
     skill_name = models.CharField(verbose_name="技能講習", max_length=30, null=True, blank=True, choices=skillTraning_list)
 
     def __str__(self):
@@ -223,7 +223,7 @@ class LicenceM(models.Model):
         ('自動車運転免許', '自動車運転免許'),
         ('免許20', '免許20'),
     ]
-    man = models.OneToOneField(SoenMemberM, on_delete=models.PROTECT, related_name='soenmemberLicence')
+    man = models.OneToOneField(SoenMemberM, on_delete=models.CASCADE, related_name='soenmemberLicence')
     licence_name = models.CharField(verbose_name="免許", max_length=40, null=True, blank=True, choices=licence_list)
 
     def __str__(self):

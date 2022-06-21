@@ -1,0 +1,37 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/TopLayout.css' %}">
+{% endblock %}
+
+{% block meta_description %}{% endblock %}
+
+{% block logina %}<h1> S O E N S </h1>{% endblock %}
+
+{% block mainnav %}
+{% endblock %}
+
+
+{% block navA %}
+    <div class="btn_bluered">
+        <a href="{% url 'Spots:spotstop' %}">Spots</a>
+    </div>
+{% endblock %}
+
+{% block main %}
+    <table class="normal_table">
+    <tr>
+        <th>NAME</th>
+    </tr>
+    {{ listname }}
+    {% for da in data %}
+        <tr><td>
+        {{ da.name }}
+        </td></tr>
+    {% endfor %}
+    </table>
+{% endblock %}
+
+{% block mainsub %}
+{% endblock %}

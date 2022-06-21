@@ -6,9 +6,14 @@ from .models import CompanyGenreM,SpotM,CompanyM
 class CompanyGenreF(forms.ModelForm):
     class Meta():
         model=CompanyGenreM
-        fields = '__all__'
+        fields = ['companygenre',]
 
 class SpotF(forms.ModelForm):
+    class Meta():
+        model=SpotM
+        fields = ['genre','name',]
+
+class SpotDetailF(forms.ModelForm):
     class Meta():
         model=SpotM
         fields = '__all__'
@@ -16,4 +21,4 @@ class SpotF(forms.ModelForm):
 class CompanyF(forms.ModelForm):
     class Meta():
         model=CompanyM
-        fields = '__all__'
+        fields = ['genre','name','add','tel','fax']

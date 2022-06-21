@@ -15,7 +15,7 @@ from .forms import GenreF, SoenMemberF, soenmemberDetailF, VehicleF, SpecialEduc
 ######################################################################
 # DeleteMember
 class SoenMemberDeleteView(DeleteView, LoginRequiredMixin):
-    template_name = 'Soen/logmemberdelete.html'
+    template_name = 'Soen/loglistdelete/logmemberdelete.html'
     model = SoenMemberM
     success_url = reverse_lazy('accounts:logintop')
 
@@ -245,7 +245,7 @@ def LoginMemberList(request):
     params = {
         'data': data,
     }
-    return render(request, 'Soen/loglist.html', params)
+    return render(request, 'Soen/loglistdelete/logmemberlist.html', params)
 
 
 @login_required()
@@ -254,7 +254,7 @@ def LoginShokukataList(request):
     params = {
         'data': data,
     }
-    return render(request, 'Soen/loglist.html', params)
+    return render(request, 'Soen/loglistdelete/logmemberlist.html', params)
 
 
 @login_required()
@@ -263,26 +263,26 @@ def LoginUncategoryList(request):
     params = {
         'data': data,
     }
-    return render(request, 'Soen/loglist.html', params)
+    return render(request, 'Soen/loglistdelete/logmemberlist.html', params)
 @login_required()
 def LoginVehicleList(request):
     data = VehicleM.objects.all()
     params = {
         'data': data,
     }
-    return render(request, 'Soen/logvehiclelist.html', params)
+    return render(request, 'Soen/loglistdelete/logvehiclelist.html', params)
 
 
 # *********************************** login before-after ***********************************************
 class SoenTop(TemplateView):
-    template_name = 'Soen/top.html'
+    template_name = 'Soen/soentop.html'
 
 
 ######################################################################
 class CreateMember(CreateView):
     model = SoenMemberM
     form_class = SoenMemberF
-    template_name = 'Soen/createmember.html'
+    template_name = 'Soen/logcreate/createmember.html'
 
     def get_success_url(self):
         return reverse('Soen:soentop')
@@ -300,7 +300,7 @@ def CreateDetailMember(request, number):
         record = soenmemberDetailF(request.POST, instance=data)
         record.save()
         return redirect(to='Soen:soentop')
-    return render(request, 'Soen/createdetailmember.html', params)
+    return render(request, 'Soen/logcreate/createdetailmember.html', params)
 
 
 def CreateHealth(request, number):
@@ -315,7 +315,7 @@ def CreateHealth(request, number):
         record = HealthF(request.POST, instance=data)
         record.save()
         return redirect(to='Soen:soentop')
-    return render(request, 'Soen/createdetailmember.html', params)
+    return render(request, 'Soen/logcreate/createdetailmember.html', params)
 
 
 def CreateInsurance(request, number):
@@ -330,7 +330,7 @@ def CreateInsurance(request, number):
         record = InsuranceF(request.POST, instance=data)
         record.save()
         return redirect(to='Soen:soentop')
-    return render(request, 'Soen/createdetailmember.html', params)
+    return render(request, 'Soen/logcreate/createdetailmember.html', params)
 
 
 # def CreateEducationSkillLicence(request, number):
@@ -361,7 +361,7 @@ def CreateEducationSkillLicence(request,number):
     params={
         'data':data,
     }
-    return render(request,'Soen/CreateEducationSkillLicence.html',params)
+    return render(request, 'Soen/logcreate/CreateEducationSkillLicence.html', params)
 
 def CreateSpecialEducation(request, number):
     name = SoenMemberM.objects.get(pk=number)
@@ -375,7 +375,7 @@ def CreateSpecialEducation(request, number):
         speedu.man=name
         speedu.save()
         return redirect(to='Soen:soentop')
-    return render(request, 'Soen/createdetailmember.html', params)
+    return render(request, 'Soen/logcreate/createdetailmember.html', params)
 def CreateSkill(request, number):
     name = SoenMemberM.objects.get(pk=number)
     params = {
@@ -388,7 +388,7 @@ def CreateSkill(request, number):
         skil.man=name
         skil.save()
         return redirect(to='Soen:soentop')
-    return render(request, 'Soen/createdetailmember.html', params)
+    return render(request, 'Soen/logcreate/createdetailmember.html', params)
 def CreateLicence(request, number):
     name = SoenMemberM.objects.get(pk=number)
     params = {
@@ -401,7 +401,7 @@ def CreateLicence(request, number):
         licen.man=name
         licen.save()
         return redirect(to='Soen:soentop')
-    return render(request, 'Soen/createdetailmember.html', params)
+    return render(request, 'Soen/logcreate/createdetailmember.html', params)
 
 def CreateVehicle(request):
     # name = SoenMemberM.objects.get(pk=number)
@@ -415,25 +415,25 @@ def CreateVehicle(request):
         record = VehicleF(request.POST)#, instance=data
         record.save()
         return redirect(to='Soen:soentop')
-    return render(request, 'Soen/createdetailmember.html', params)
+    return render(request, 'Soen/logcreate/createdetailmember.html', params)
 
 
 ######################################################################
 class SoenMember(ListView):
-    template_name = 'Soen/soenmember.html'
+    template_name = 'Soen/memberlist.html'
     context_object_name = 'Members'
     # model=SoenMemberM#queryset = SoenMemberM.objects.all()
     queryset = SoenMemberM.objects.filter(genre_id=1)
 
 
 class ShokukataMember(ListView):
-    template_name = 'Soen/soenmember.html'
+    template_name = 'Soen/memberlist.html'
     context_object_name = 'Members'
     queryset = SoenMemberM.objects.filter(genre_id=2)
 
 
 class Uncategory(ListView):
-    template_name = 'Soen/soenmember.html'
+    template_name = 'Soen/memberlist.html'
     context_object_name = 'Members'
     queryset = SoenMemberM.objects.filter(genre_id=5)
 

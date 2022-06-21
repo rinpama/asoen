@@ -1,0 +1,33 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/TopLayout.css' %}">
+{% endblock %}
+
+{% block meta_description %}{% endblock %}
+
+{% block logina %}<h1> S O E N S </h1>{% endblock %}
+
+{% block mainnav %}
+{% endblock %}
+
+
+{% block navA %}
+    <div class="btn_bluered">
+        <a href="{% url 'Spots:spotstop' %}">Spots</a>
+    </div>
+{% endblock %}
+
+{% block main %}
+
+    <div style="background-color: white;">{{ message }}</div>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type='submit'>save</button>
+    </form>
+{% endblock %}
+
+{% block mainsub %}
+{% endblock %}

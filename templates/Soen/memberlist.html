@@ -37,8 +37,6 @@
         <tr>
             <div>
                 <li style="background-color:white;">({{ member.genre }}){{ member.name }}
-
-                    {#                                        {% if member.soenmemberD %}#}
                     {% if member.soenmemberD %}
                         {#                        <a class="btn btn-normal" href="{% url 'Soen:updatemember' member.id %}"> 詳細update </a>#}
                         <a class="btn btn-normal" href="{% url 'Soen:soenmemberDetail' member.id %}"> 詳細 </a>
@@ -61,13 +59,8 @@
                         <a class="btn btn-normal"
                            href="{% url 'Soen:createeducationskilllicence' member.id %}">技能Create </a>
                     {% endif %}
-
-                    {#                        <a class="btn btn-normal" href="{% url 'Soen:vehicle' member.id %}"> 登録車両 </a>#}
-
-
                 </li>
             </div>
-
         </tr>
     {% endfor %}
 {% endblock %}
