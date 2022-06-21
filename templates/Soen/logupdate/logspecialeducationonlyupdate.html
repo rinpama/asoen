@@ -1,0 +1,28 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}{% endblock %}
+{% block meta_description %}{% endblock %}
+{{ title }}
+
+{% block mainnav %}
+{% endblock %}
+
+{% block navA %}
+    <a href="{% url 'accounts:logintop' %}"><p>loginTop</p></a>
+{% endblock %}
+
+{% block main %}
+    <br>MemberUpdate
+    <form action="{% url 'Soen:updatespecialeducationonly' data.pk %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ form2.as_p }}
+        {{ form3.as_p }}
+        {{ form4.as_p }}
+        <br>
+        <button type="submit">編集</button>
+    </form>
+
+
+{% endblock %}

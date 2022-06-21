@@ -51,7 +51,7 @@ body {
 /*content*/
 #container5 {
     display: grid; /* グリッドレイアウト minmax(660px,auto) */
-    grid-template-rows: minmax(550px, auto);
+    grid-template-rows: minmax(800px, auto);
     grid-template-columns: 100px 1fr 50px;
 }
 

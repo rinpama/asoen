@@ -1,8 +1,9 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import CompanyGenreM,SpotCompanyM,spotcompanyDetailM
+# CompanyGenreM,SpotM,CompanyM
+from .models import CompanyGenreM,SpotM,CompanyM
 
 admin.site.register(CompanyGenreM)
-admin.site.register(SpotCompanyM)
-admin.site.register(spotcompanyDetailM)
+admin.site.register(SpotM)
+admin.site.register(CompanyM)

@@ -5,8 +5,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
-from .models import CompanyGenreM,SpotCompanyM,spotcompanyDetailM
-from .forms import CompanyGenreF,SpotCompanyF,spotcompanyDetailF
+from .models import CompanyGenreM,SpotM,CompanyM
+from .forms import CompanyGenreF,SpotF,CompanyF
 # Create your views here.
 
 
@@ -17,8 +17,8 @@ class SpotsTop(TemplateView):
 
 ######################################################################
 class SpotCreate(CreateView):
-    model = SpotCompanyM
-    form_class = SpotCompanyF
+    model = SpotM
+    form_class = SpotF
     template_name = 'Spots/spotcreate.html'
 
     def get_success_url(self):

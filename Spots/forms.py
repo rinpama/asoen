@@ -1,5 +1,5 @@
 from django import forms
-from .models import CompanyGenreM,SpotCompanyM,spotcompanyDetailM
+from .models import CompanyGenreM,SpotM,CompanyM
 #CompanyGenreF,SpotCompanyF,spotcompanyDetailF
 
 
@@ -8,12 +8,12 @@ class CompanyGenreF(forms.ModelForm):
         model=CompanyGenreM
         fields = '__all__'
 
-class SpotCompanyF(forms.ModelForm):
+class SpotF(forms.ModelForm):
     class Meta():
-        model=SpotCompanyM
+        model=SpotM
         fields = '__all__'
 
-class spotcompanyDetailF(forms.ModelForm):
+class CompanyF(forms.ModelForm):
     class Meta():
-        model=spotcompanyDetailM
+        model=CompanyM
         fields = '__all__'

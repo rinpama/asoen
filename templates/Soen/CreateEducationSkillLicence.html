@@ -1,0 +1,36 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}{% endblock %}
+{% block meta_description %}{% endblock %}
+{{ title }}
+
+
+{% block navA %}
+{% endblock %}
+
+{% block main %}
+    {{ data.name }}
+    <ul>
+        {% if data.soenmemberEducation %}
+            <li><a href="{% url 'Soen:updatespecialeducationonly' data.id %}">特別教育　編集</a></li>
+        {% else %}
+            <li><a href="{% url 'Soen:createspecialeducation' data.id %}">特別教育　作成</a></li>
+        {% endif %}
+        {% if data.soenmemberSkill %}
+            <li><a href="{% url 'Soen:updateskillonly' data.id %}">技能講習　編集</a></li>
+        {% else %}
+            <li><a href="{% url 'Soen:createskill' data.id %}">技能講習　作成</a></li>
+        {% endif %}
+        {% if data.soenmemberLicence %}
+            <li><a href="{% url 'Soen:updatelicenceonly' data.id %}">免許等々　編集</a></li>
+        {% else %}
+            <li><a href="{% url 'Soen:createlicence' data.id %}">免許等々　作成</a></li>
+        {% endif %}
+
+
+    </ul>
+
+
+
+{% endblock %}

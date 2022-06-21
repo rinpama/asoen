@@ -98,6 +98,63 @@ def UpdateSkillView(request, number):
     return render(request, 'Soen/logupdate/logskillupdate.html',
                   {'form': form, 'data': data, 'form2': form2, 'form3': form3, 'form4': form4})
 
+@login_required()
+def UpdateSpecialEducationOnly(request, number):
+    data = SoenMemberM.objects.get(pk=number)
+    data3 = data.soenmemberEducation
+    if request.method == 'POST':
+        form = SoenMemberF(request.POST,request.FILES, instance=data)
+        form3 = SpecialEducationF(request.POST,request.FILES, instance=data3)
+        if all((form.is_valid(), form3.is_valid(), )):
+            member = form.save()
+            detail2 = form3.save(commit=False)
+            detail2.man = member
+            detail2.save()
+            return redirect('Soen:loginmemberlist')
+    else:
+        form = SoenMemberF(instance=data)
+        form3 = SpecialEducationF(instance=data3)
+    return render(request, 'Soen/logupdate/logspecialeducationonlyupdate.html',
+                  {'form': form, 'data': data,  'form3': form3,})
+
+@login_required()
+def UpdateSkillOnly(request, number):
+    data = SoenMemberM.objects.get(pk=number)
+    data2 = data.soenmemberSkill
+    if request.method == 'POST':
+        form = SoenMemberF(request.POST,request.FILES, instance=data)
+        form2 = SkillF(request.POST,request.FILES, instance=data2)
+        if all((form.is_valid(), form2.is_valid())):
+            member = form.save()
+            detail = form2.save(commit=False)
+            detail.man = member
+            detail.save()
+            return redirect('Soen:loginmemberlist')
+    else:
+        form = SoenMemberF(instance=data)
+        form2 = SkillF(instance=data2)
+    return render(request, 'Soen/logupdate/logskillonlyupdate.html',
+                  {'form': form, 'data': data, 'form2': form2,})
+
+@login_required()
+def UpdateLicenceOnly(request, number):
+    data = SoenMemberM.objects.get(pk=number)
+    data4 = data.soenmemberLicence
+    if request.method == 'POST':
+        form = SoenMemberF(request.POST,request.FILES, instance=data)
+        form4 = LicenceF(request.POST,request.FILES, instance=data4)
+        if all((form.is_valid(), form4.is_valid())):
+            member = form.save()
+            detail3 = form4.save(commit=False)
+            detail3.man = member
+            detail3.save()
+            return redirect('Soen:loginmemberlist')
+    else:
+        form = SoenMemberF(instance=data)
+        form4 = LicenceF(instance=data4)
+    return render(request, 'Soen/logupdate/loglicenceonlyupdate.html',
+                  {'form': form, 'data': data, 'form4': form4})
+
 
 @login_required()
 def UpdateInsuranceView(request, number):
@@ -276,31 +333,75 @@ def CreateInsurance(request, number):
     return render(request, 'Soen/createdetailmember.html', params)
 
 
-def CreateEducationSkillLicence(request, number):
+# def CreateEducationSkillLicence(request, number):
+#     name = SoenMemberM.objects.get(pk=number)
+#     params = {
+#         'name': name.name,
+#         # 'form':soenmemberDetailF(instance=data),xxx
+#         'form': SpecialEducationF(),
+#         'form2': SkillF(),
+#         'form3': LicenceF()
+#     }
+#     if (request.method == 'POST'):
+#         name = SoenMemberM.objects.get(pk=number)
+#         data = SpecialEducationM(man_id=name.id)
+#         record = SpecialEducationF(request.POST,request.FILES, instance=data)
+#         data2 = SkillM(man_id=name.id)
+#         record2 = SkillF(request.POST,request.FILES, instance=data2)
+#         data3 = LicenceM(man_id=name.id)
+#         record3 = LicenceF(request.POST,request.FILES, instance=data3)
+#         record.save()
+#         record2.save()
+#         record3.save()
+#         return redirect(to='Soen:soentop')
+#     return render(request, 'Soen/createdetailmember.html', params)
+
+def CreateEducationSkillLicence(request,number):
+    data=SoenMemberM.objects.get(pk=number)
+    params={
+        'data':data,
+    }
+    return render(request,'Soen/CreateEducationSkillLicence.html',params)
+
+def CreateSpecialEducation(request, number):
     name = SoenMemberM.objects.get(pk=number)
     params = {
-        'name': name.name,
-        # 'form':soenmemberDetailF(instance=data),
-        'form': SpecialEducationF(),
-        'form2': SkillF(),
-        'form3': LicenceF()
+        'name': name,
+        'form': SpecialEducationF()
     }
     if (request.method == 'POST'):
-        data = SpecialEducationM(man_id=name.id)
-        record = SpecialEducationF(request.POST,request.FILES, instance=data)
-        # if record.is_valid():
-        record.save()
-        data2 = SkillM(man_id=name.id)
-        record2 = SkillF(request.POST, instance=data2)
-        # if record2.is_valid():
-        record2.save()
-        data3 = LicenceM(man_id=name.id)
-        record3 = LicenceF(request.POST, instance=data3)
-        # if record3.is_valid():
-        record3.save()
+        speeduf=SpecialEducationF(request.POST)
+        speedu=speeduf.save(commit=False)
+        speedu.man=name
+        speedu.save()
         return redirect(to='Soen:soentop')
     return render(request, 'Soen/createdetailmember.html', params)
-
+def CreateSkill(request, number):
+    name = SoenMemberM.objects.get(pk=number)
+    params = {
+        'name': name,
+        'form': SkillF()
+    }
+    if (request.method == 'POST'):
+        skillf=SkillF(request.POST)
+        skil=skillf.save(commit=False)
+        skil.man=name
+        skil.save()
+        return redirect(to='Soen:soentop')
+    return render(request, 'Soen/createdetailmember.html', params)
+def CreateLicence(request, number):
+    name = SoenMemberM.objects.get(pk=number)
+    params = {
+        'name': name,
+        'form': LicenceF()
+    }
+    if (request.method == 'POST'):
+        licenf=LicenceF(request.POST)
+        licen=licenf.save(commit=False)
+        licen.man=name
+        licen.save()
+        return redirect(to='Soen:soentop')
+    return render(request, 'Soen/createdetailmember.html', params)
 
 def CreateVehicle(request):
     # name = SoenMemberM.objects.get(pk=number)
