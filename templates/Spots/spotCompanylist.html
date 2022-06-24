@@ -20,16 +20,35 @@
 {% endblock %}
 
 {% block main %}
-    <table class="normal_table">
-    <tr>
-        <th>NAME</th>
-    </tr>
     {{ listname }}
-    {% for da in data %}
-        <tr><td>
-        {{ da.name }}
-        </td></tr>
-    {% endfor %}
+    <form action="{% url 'Spots:spotlist' %}" method="POST">
+        {% csrf_token %}
+        {{ form }}
+{#        <br>#}
+        <input type="submit" value="検索">
+    </form>
+
+    <table class="normal_table">
+        <tr>
+            <th>NAME</th>
+        </tr>
+        {% if serchedData %}
+            {% for serched in serchedData %}
+                <tr>
+                    <td>
+                        {{ serched.name }}
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            {% for da in data %}
+                <tr>
+                    <td>
+                        {{ da.name }}
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
     </table>
 {% endblock %}
 

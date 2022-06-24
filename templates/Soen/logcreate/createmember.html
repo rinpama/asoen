@@ -14,18 +14,23 @@
 
 
 {% block navA %}
+    {% if not request.user.is_authenticated %}
         <div class="btn_bluered">
-        <a href="{% url 'Soen:soentop' %}">Soen</a>
-    </div>
+        <a href="{% url 'accounts:logintop' %}">Soenlogtop</a></div>
+    {% else %}
+        <div class="btn_bluered">
+            <a href="{% url 'Soen:soentop' %}">Soen</a></div>
+    {% endif %}
+
 {% endblock %}
 
 {% block main %}
+    <div style="background-color: white;">{{ message }}</div>
     <form action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type='submit'>save</button>
     </form>
-
 {% endblock %}
 
 {% block mainsub %}

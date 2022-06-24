@@ -33,16 +33,16 @@
     </div>
     <ul>
         <li>
-            <a href=""><p style="font-size:10px">㈱装苑</p></a>
+            <a href="{% url 'Spots:logsoenlist' %}"><p style="font-size:10px">㈱装苑</p></a>
         </li>
         <li>
-            <a href=""><p style="font-size:10px">協力会社List</p></a>
+            <a href="{% url 'Spots:logkyouryokulist' %}"><p style="font-size:10px">協力会社List</p></a>
         </li>
         <li>
-            <a href=""><p style="font-size:10px;">元請会社List</p></a>
+            <a href="{% url 'Spots:loggenelist' %}"><p style="font-size:10px;">元請会社List</p></a>
         </li>
         <li>
-            <a href=""><p style="font-size:10px;">現場 List</p></a>
+            <a href="{% url 'Spots:logaspotlist' %}"><p style="font-size:10px;">現場 List</p></a>
         </li>
     </ul>
     <div class="btn_bluered">
@@ -50,16 +50,16 @@
     </div>
     <ul>
                 <li>
-                    <a href="{% url 'Spots:spotcreate' %}"><p style="font-size:10px;">Spot</p></a>
+                    <a href="{% url 'Spots:createspotdetail' %}"><p style="font-size:10px;">Spot</p></a>
                 </li>
                 <li>
-                    <a href="{% url 'Spots:spotcreate' %}"><p style="font-size:10px;">Company</p></a>
+                    <a href="{% url 'Spots:createcompanydetail' %}"><p style="font-size:10px;">Company</p></a>
                 </li>
-
                 <li>
-                    <a href="{% url 'Spots:spotcreate' %}"><p style="font-size:10px;">Member</p></a>
+                    <a href="{% url 'Soen:creatememberdetail' %}"><p style="font-size:10px;">Member</p></a>
                 </li>
     </ul>
+
 {% endblock %}
 
 {% block main %}

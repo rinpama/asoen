@@ -19,7 +19,7 @@
         {% if request.user.is_authenticated %}
             <a href="{% url 'accounts:logintop' %}">Soenlogtop</a>
         {% else %}
-            <a href="{% url 'Soen:soentop' %}">Soen</a>
+            <a href="{% url 'Spots:spotstop' %}">Soen</a>
         {% endif %}
     </div>
 {% endblock %}
@@ -29,13 +29,11 @@
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        {{ form2.as_p }}
-        {{ form3.as_p }}
+{#        {{ form2.as_p }}#}
+{#        {{ form3.as_p }}#}
         <button type='submit'>save</button>
     </form>
 {% endblock %}
 
 {% block mainsub %}
 {% endblock %}
-
-

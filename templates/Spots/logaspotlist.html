@@ -1,0 +1,36 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}{% endblock %}
+{% block meta_description %}{% endblock %}
+{{ title }}
+
+{% block mainnav %}
+{% endblock %}
+
+{% block navA %}
+    <a href="{% url 'accounts:logintop' %}"><p>loginTop</p></a>
+{% endblock %}
+
+{% block main %}
+    <br>AspotList
+    <table style="background-color:white;">
+        <tr>
+            <th>所属</th>
+            <th>名前</th>
+        </tr>
+        {% for member in data %}
+            <tr>
+            <td>{{ member.genre }}</td>
+            <td>{{ member.spotname }}</td>
+            <br>
+            {% if member.companyDetail and not member.spotDetail %}
+                <td><a href="{% url 'Soen:logindetailmember' member.pk %}">　詳　細 Update</a></td>
+            {% else%}
+                <td><a href="{% url 'Spots:createdetailapost' member.pk %}">　詳　細 Create</a></td>
+            {% endif %}
+
+
+        {% endfor %}
+    </table>
+{% endblock %}

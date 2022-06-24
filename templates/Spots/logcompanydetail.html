@@ -1,0 +1,40 @@
+{% extends 'BaseLayout.html' %}
+{% load static %}
+
+{% block cssstyle %}{% endblock %}
+{% block meta_description %}{% endblock %}
+{{ title }}
+
+{% block mainnav %}
+{% endblock %}
+
+{% block navA %}
+    <a href="{% url 'accounts:logintop' %}"><p>loginTop</p></a>
+{% endblock %}
+
+{% block main %}
+    <br>MemberDetail
+    <table class="normal_table" style="background-color:white;">
+        <tr>
+            <th>所属</th>
+            <th>名前</th>
+            <th>年齢</th>
+            <th>住所</th>
+        </tr>
+        <tr>
+            <td>{{ data.genre }}</td>
+            <td>{{ data.name }}</td>
+            {#            <td>{{ data2.add }}</td>#}
+            <td>{{ data.soenmemberD.age }}</td>
+            <td>{{ data.soenmemberD.add }}</td>
+            {% if data.soenmemberD %}
+                <td><a href="{% url 'Soen:updatemember' data.pk %}">編集</a></td>
+            {% else %}
+                <td><a href="{% url 'Soen:createdetailmember' data.pk %}">詳細Create</a></td>
+            {% endif %}
+            <td><a href="{% url 'Soen:deletemember' data.pk %}">削除</a></td>
+            <br>
+        <tr>
+
+    </table>
+{% endblock %}

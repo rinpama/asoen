@@ -11,5 +11,15 @@ urlpatterns = [
     path('soenlist', soenlist, name='soenlist'),
     path('spotcreate', SpotCreate.as_view(), name='spotcreate'),
     path('companycreate', CompanyCreate.as_view(), name='companycreate'),
+    path('createspotdetail', CreateSpotDetail, name='createspotdetail'),
+    path('createcompanydetail', CreateCompanyDetail, name='createcompanydetail'),
+path('createdetailcompany/<int:number>', CreateDetailCompany, name='createdetailcompany'),#nameを元にdetailCreate
+path('createdetailaspot/<int:number>', CreateDetailAspot, name='createdetailapost'),#nameを元にdetailCreate
 
+    path('logsouenlist',logSoenList,name='logsoenlist'),
+path('loggenelist',logGeneList,name='loggenelist'),
+path('logkyouryokulist',logKyouryokuList,name='logkyouryokulist'),
+path('logaspotlist',logAspotList,name='logaspotlist'),
+path('logcompanydetail/<int:number>', LogCompanyDetail, name='logcompanydetail'),
+path('logaspotdetail/<int:number>', LogAspotDetail, name='logaspotdetail'),
 ]

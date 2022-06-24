@@ -15,20 +15,21 @@ urlpatterns = [
     path('insurance/<int:number>', soenmemberInsurance, name='insurance'),
     path('skill/<int:number>', soenmemberEducationSkillLicence, name='educationskilllicence'),
 
-    path('membercreate', CreateMember.as_view(), name='createmember'),
-    path('memberedetailcreate/<int:number>', CreateDetailMember, name='createdetailmember'),
+    path('membercreate', CreateMember.as_view(), name='createmember'),#名前だけ作成
+    path('memberedetailcreate/<int:number>', CreateDetailMember, name='createdetailmember'),#名前をもとにDetailだけを作成
+path('creatememberedetail',CreateMemberDetail, name='creatememberdetail'),#名前+Detail一緒に作成
     path('createhealth/<int:number>', CreateHealth, name='createhealth'),
     path('createinsurance/<int:number>', CreateInsurance, name='createinsurance'),
     path('createeducationskilllicence/<int:number>', CreateEducationSkillLicence, name='createeducationskilllicence'),
-path('createspecialeducation/<int:number>', CreateSpecialEducation, name='createspecialeducation'),
-path('createskill/<int:number>', CreateSkill, name='createskill'),
-path('createlicence/<int:number>', CreateLicence, name='createlicence'),
+    path('createspecialeducation/<int:number>', CreateSpecialEducation, name='createspecialeducation'),
+    path('createskill/<int:number>', CreateSkill, name='createskill'),
+    path('createlicence/<int:number>', CreateLicence, name='createlicence'),
     path('createvehicle', CreateVehicle, name='createvehicle'),
 
     path('loginmemberlist', LoginMemberList, name='loginmemberlist'),
     path('loginshokukatalist', LoginShokukataList, name='loginshokukatalist'),
     path('loginuncategorylist', LoginUncategoryList, name='loginuncategorylist'),
-path('loginvehiclelist', LoginVehicleList, name='loginvehiclelist'),
+    path('loginvehiclelist', LoginVehicleList, name='loginvehiclelist'),
 
     path('logdetailmember/<int:number>', LoginDetailMember, name='logindetailmember'),
     path('logdetailhealth/<int:number>', LoginDetailHealth, name='logindetailhealth'),
@@ -39,9 +40,9 @@ path('loginvehiclelist', LoginVehicleList, name='loginvehiclelist'),
     path('updatemember/<int:number>', UpdateMemberView, name='updatemember'),
     path('updatehealth/<int:number>', UpdateHealthView, name='updatehealth'),
     path('updateskill/<int:number>', UpdateSkillView, name='updateskill'),
-path('updatespecialeducationonly/<int:number>', UpdateSpecialEducationOnly, name='updatespecialeducationonly'),
-path('updateskillonly/<int:number>', UpdateSkillOnly, name='updateskillonly'),
-path('updatelicenceonly/<int:number>', UpdateLicenceOnly, name='updatelicenceonly'),
+    path('updatespecialeducationonly/<int:number>', UpdateSpecialEducationOnly, name='updatespecialeducationonly'),
+    path('updateskillonly/<int:number>', UpdateSkillOnly, name='updateskillonly'),
+    path('updatelicenceonly/<int:number>', UpdateLicenceOnly, name='updatelicenceonly'),
 
     path('updatevehicle/<int:number>', UpdateVehicleView, name='updatevehicle'),
     path('updateinsurance/<int:number>', UpdateInsuranceView, name='updateinsurance'),

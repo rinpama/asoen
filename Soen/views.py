@@ -74,10 +74,10 @@ def UpdateSkillView(request, number):
     data3 = data.soenmemberEducation
     data4 = data.soenmemberLicence
     if request.method == 'POST':
-        form = SoenMemberF(request.POST,request.FILES, instance=data)
-        form2 = SkillF(request.POST,request.FILES, instance=data2)
-        form3 = SpecialEducationF(request.POST,request.FILES, instance=data3)
-        form4 = LicenceF(request.POST,request.FILES, instance=data4)
+        form = SoenMemberF(request.POST, request.FILES, instance=data)
+        form2 = SkillF(request.POST, request.FILES, instance=data2)
+        form3 = SpecialEducationF(request.POST, request.FILES, instance=data3)
+        form4 = LicenceF(request.POST, request.FILES, instance=data4)
         if all((form.is_valid(), form2.is_valid(), form3.is_valid(), form4.is_valid())):
             member = form.save()
             detail = form2.save(commit=False)
@@ -98,14 +98,15 @@ def UpdateSkillView(request, number):
     return render(request, 'Soen/logupdate/logskillupdate.html',
                   {'form': form, 'data': data, 'form2': form2, 'form3': form3, 'form4': form4})
 
+
 @login_required()
 def UpdateSpecialEducationOnly(request, number):
     data = SoenMemberM.objects.get(pk=number)
     data3 = data.soenmemberEducation
     if request.method == 'POST':
-        form = SoenMemberF(request.POST,request.FILES, instance=data)
-        form3 = SpecialEducationF(request.POST,request.FILES, instance=data3)
-        if all((form.is_valid(), form3.is_valid(), )):
+        form = SoenMemberF(request.POST, request.FILES, instance=data)
+        form3 = SpecialEducationF(request.POST, request.FILES, instance=data3)
+        if all((form.is_valid(), form3.is_valid(),)):
             member = form.save()
             detail2 = form3.save(commit=False)
             detail2.man = member
@@ -115,15 +116,16 @@ def UpdateSpecialEducationOnly(request, number):
         form = SoenMemberF(instance=data)
         form3 = SpecialEducationF(instance=data3)
     return render(request, 'Soen/logupdate/logspecialeducationonlyupdate.html',
-                  {'form': form, 'data': data,  'form3': form3,})
+                  {'form': form, 'data': data, 'form3': form3, })
+
 
 @login_required()
 def UpdateSkillOnly(request, number):
     data = SoenMemberM.objects.get(pk=number)
     data2 = data.soenmemberSkill
     if request.method == 'POST':
-        form = SoenMemberF(request.POST,request.FILES, instance=data)
-        form2 = SkillF(request.POST,request.FILES, instance=data2)
+        form = SoenMemberF(request.POST, request.FILES, instance=data)
+        form2 = SkillF(request.POST, request.FILES, instance=data2)
         if all((form.is_valid(), form2.is_valid())):
             member = form.save()
             detail = form2.save(commit=False)
@@ -134,15 +136,16 @@ def UpdateSkillOnly(request, number):
         form = SoenMemberF(instance=data)
         form2 = SkillF(instance=data2)
     return render(request, 'Soen/logupdate/logskillonlyupdate.html',
-                  {'form': form, 'data': data, 'form2': form2,})
+                  {'form': form, 'data': data, 'form2': form2, })
+
 
 @login_required()
 def UpdateLicenceOnly(request, number):
     data = SoenMemberM.objects.get(pk=number)
     data4 = data.soenmemberLicence
     if request.method == 'POST':
-        form = SoenMemberF(request.POST,request.FILES, instance=data)
-        form4 = LicenceF(request.POST,request.FILES, instance=data4)
+        form = SoenMemberF(request.POST, request.FILES, instance=data)
+        form4 = LicenceF(request.POST, request.FILES, instance=data4)
         if all((form.is_valid(), form4.is_valid())):
             member = form.save()
             detail3 = form4.save(commit=False)
@@ -247,7 +250,6 @@ def LoginMemberList(request):
     }
     return render(request, 'Soen/loglistdelete/logmemberlist.html', params)
 
-
 @login_required()
 def LoginShokukataList(request):
     data = SoenMemberM.objects.filter(genre_id=2)
@@ -256,7 +258,6 @@ def LoginShokukataList(request):
     }
     return render(request, 'Soen/loglistdelete/logmemberlist.html', params)
 
-
 @login_required()
 def LoginUncategoryList(request):
     data = SoenMemberM.objects.filter(genre_id=5)
@@ -264,6 +265,7 @@ def LoginUncategoryList(request):
         'data': data,
     }
     return render(request, 'Soen/loglistdelete/logmemberlist.html', params)
+
 @login_required()
 def LoginVehicleList(request):
     data = VehicleM.objects.all()
@@ -284,6 +286,11 @@ class CreateMember(CreateView):
     form_class = SoenMemberF
     template_name = 'Soen/logcreate/createmember.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['message'] = 'Memebr 新規作成'
+        return context
+
     def get_success_url(self):
         return reverse('Soen:soentop')
 
@@ -300,6 +307,24 @@ def CreateDetailMember(request, number):
         record = soenmemberDetailF(request.POST, instance=data)
         record.save()
         return redirect(to='Soen:soentop')
+    return render(request, 'Soen/logcreate/createdetailmember.html', params)
+
+@login_required
+def CreateMemberDetail(request):
+    params = {
+        'form': SoenMemberF(),
+        'form2': soenmemberDetailF(),
+    }
+    if (request.method == 'POST'):
+        record1 = SoenMemberF(request.POST)
+        record2 = soenmemberDetailF(request.POST)
+        if all((record1.is_valid(), record2.is_valid())):
+            member=record1.save(commit=False)
+            member.save()
+            detail=record2.save(commit=False)
+            detail.man=member
+            detail.save()
+            return redirect(to='accounts:logintop')
     return render(request, 'Soen/logcreate/createdetailmember.html', params)
 
 
@@ -356,12 +381,13 @@ def CreateInsurance(request, number):
 #         return redirect(to='Soen:soentop')
 #     return render(request, 'Soen/createdetailmember.html', params)
 
-def CreateEducationSkillLicence(request,number):
-    data=SoenMemberM.objects.get(pk=number)
-    params={
-        'data':data,
+def CreateEducationSkillLicence(request, number):
+    data = SoenMemberM.objects.get(pk=number)
+    params = {
+        'data': data,
     }
     return render(request, 'Soen/logcreate/CreateEducationSkillLicence.html', params)
+
 
 def CreateSpecialEducation(request, number):
     name = SoenMemberM.objects.get(pk=number)
@@ -370,12 +396,14 @@ def CreateSpecialEducation(request, number):
         'form': SpecialEducationF()
     }
     if (request.method == 'POST'):
-        speeduf=SpecialEducationF(request.POST)
-        speedu=speeduf.save(commit=False)
-        speedu.man=name
+        speeduf = SpecialEducationF(request.POST)
+        speedu = speeduf.save(commit=False)
+        speedu.man = name
         speedu.save()
         return redirect(to='Soen:soentop')
     return render(request, 'Soen/logcreate/createdetailmember.html', params)
+
+
 def CreateSkill(request, number):
     name = SoenMemberM.objects.get(pk=number)
     params = {
@@ -383,12 +411,14 @@ def CreateSkill(request, number):
         'form': SkillF()
     }
     if (request.method == 'POST'):
-        skillf=SkillF(request.POST)
-        skil=skillf.save(commit=False)
-        skil.man=name
+        skillf = SkillF(request.POST)
+        skil = skillf.save(commit=False)
+        skil.man = name
         skil.save()
         return redirect(to='Soen:soentop')
     return render(request, 'Soen/logcreate/createdetailmember.html', params)
+
+
 def CreateLicence(request, number):
     name = SoenMemberM.objects.get(pk=number)
     params = {
@@ -396,12 +426,13 @@ def CreateLicence(request, number):
         'form': LicenceF()
     }
     if (request.method == 'POST'):
-        licenf=LicenceF(request.POST)
-        licen=licenf.save(commit=False)
-        licen.man=name
+        licenf = LicenceF(request.POST)
+        licen = licenf.save(commit=False)
+        licen.man = name
         licen.save()
         return redirect(to='Soen:soentop')
     return render(request, 'Soen/logcreate/createdetailmember.html', params)
+
 
 def CreateVehicle(request):
     # name = SoenMemberM.objects.get(pk=number)
@@ -412,7 +443,7 @@ def CreateVehicle(request):
     }
     if (request.method == 'POST'):
         # data = VehicleM(man_id=name.id)
-        record = VehicleF(request.POST)#, instance=data
+        record = VehicleF(request.POST)  # , instance=data
         record.save()
         return redirect(to='Soen:soentop')
     return render(request, 'Soen/logcreate/createdetailmember.html', params)
@@ -465,9 +496,9 @@ def soenmemberEducationSkillLicence(request, number):
 
 def soenmemberVehicle(request, number):
     MemberV = SoenMemberM.objects.get(pk=number)
-    vehicle=MemberV.vehiclem_set.filter(man__name=MemberV.name)
+    vehicle = MemberV.vehiclem_set.filter(man__name=MemberV.name)
     params = {
         'Memberv': MemberV,
-        'vehicle':vehicle
+        'vehicle': vehicle
     }
     return render(request, 'Soen/notlogdetail/vehicle.html', params)
