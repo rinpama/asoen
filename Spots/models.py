@@ -10,7 +10,7 @@ def check_age(value):
 # CompanyGenreM,SpotGenreM,SpotM,CompanyM,SpotDetailM,CompanyDetailM
 
 class CompanyGenreM(models.Model):
-    companygenre = models.CharField(max_length=20, default='')
+    companygenre = models.CharField(max_length=20, unique=True,default='')
     def __str__(self):
         return self.companygenre +'(id='+ str(self.id) +')'
         # return self.companygenre
@@ -32,7 +32,7 @@ class CompanyM(models.Model):
 
 class CompanyDetailM(models.Model):
     companydetail=models.OneToOneField(CompanyM,on_delete=models.CASCADE,related_name='companyDetail')
-    president=models.CharField(max_length=30)#社長
+    president=models.CharField(max_length=30, default='', blank=True, null=True,)#社長
     def __str__(self):
         return str(self.companydetail) + '(' + str(self.president) + ')'
     class Meta:

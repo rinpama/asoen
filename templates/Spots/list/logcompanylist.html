@@ -13,7 +13,7 @@
 {% endblock %}
 
 {% block main %}
-    <br>AspotList
+    <br>CompanyList
     <table style="background-color:white;">
         <tr>
             <th>所属</th>
@@ -22,12 +22,12 @@
         {% for member in data %}
             <tr>
             <td>{{ member.genre }}</td>
-            <td>{{ member.spotname }}</td>
+            <td>{{ member.name }}</td>
             <br>
             {% if member.companyDetail and not member.spotDetail %}
-                <td><a href="{% url 'Soen:logindetailmember' member.pk %}">　詳　細 Update</a></td>
+                <td><a href="{% url 'Spots:updatecompany' member.pk %}">　詳　細 Update</a></td>
             {% else%}
-                <td><a href="{% url 'Spots:createdetailapost' member.pk %}">　詳　細 Create</a></td>
+                <td><a href="{% url 'Spots:createdetailcompany' member.pk %}">　詳　細 Create</a></td>
             {% endif %}
 
 
